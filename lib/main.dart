@@ -40,7 +40,7 @@ class _MenoPaulState extends State<MenoPaul> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'paul2pontoise 1.99:' + QuizzCommons.myPseudo,
+          'paul2pontoise 2.0' + QuizzCommons.myPseudo,
           style: GoogleFonts.averageSans(fontSize: 15.0),
         ),
       ),
@@ -95,15 +95,6 @@ class _MenoPaulState extends State<MenoPaul> {
                             }
                             if (listMemopolUsers[0].uprofile & 64 == 64) {
                               isGamer = true;
-                              if (false) {
-                                // <ECVLD>   derniere étape avant suppression
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const QuizzBd()),
-                                );
-                              }
-                              // builder: (context) => const QuizzAsterix())
                             }
                           });
                         },
@@ -193,7 +184,7 @@ class _MenoPaulState extends State<MenoPaul> {
                       ),
                     ),
                   ),
-                  //--> Asterix
+
                   Visibility(
                     visible: QuizzCommons.myProfile == CERTIFIED_PML,
                     child: Padding(

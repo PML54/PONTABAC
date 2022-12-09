@@ -295,11 +295,40 @@ class _QuizzZizikState extends State<QuizzZizik> {
           boolZoom = !boolZoom;
         })
       },
-      child: Text(
-        listPhotoBase[random].photouploader,
-        style: TextStyle(
-            color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
-      ),
+      child:
+    /*  Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          listPhotoBase[random].photouploader,
+          style: TextStyle(
+              color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+      ),*/
+
+      Stack(
+        children: <Widget>[
+          // Stroked text as border.
+          Text(
+            listPhotoBase[random].photouploader,
+            style: TextStyle(
+              fontSize: 20,
+              foreground: Paint()
+                ..style = PaintingStyle.stroke
+                ..strokeWidth = 6
+                ..color = Colors.blue[700]!,
+            ),
+          ),
+          // Solid text as fill.
+          Text(
+            listPhotoBase[random].photouploader,
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.grey[300],
+            ),
+          ),
+        ],
+      )
+
     )));
   }
 
