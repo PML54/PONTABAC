@@ -161,7 +161,6 @@ class _QuizzZizikState extends State<QuizzZizik> {
                   child: Text(
                       "-->" + (nbGood * (forceQuizz - 1)).toString() + "Pts"),
 
-                  //  child: Text(nbGood.toString() + "/" + nbQuizz.toString()),
                 ),
               ),
               Visibility(
@@ -174,6 +173,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
                       onPressed: () {
                         setState(() {
                           boolScore = !boolScore;
+                          booldisplayHelp=!boolScore;
                         });
                       })),
               Visibility(
@@ -186,6 +186,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
                       onPressed: () {
                         setState(() {
                           booldisplayHelp = !booldisplayHelp;
+                          boolScore=!booldisplayHelp;
                         });
                       })),
             ],
