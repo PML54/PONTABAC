@@ -31,7 +31,7 @@ class VideoPlayerScreen extends StatefulWidget {
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   late VideoPlayerController _controller;
   late Future<void> _initializeVideoPlayerFuture;
-  static bool boolTexfield = false;
+
   bool feuVert = false;
   List<PhotoBase> listVideoBase = [];
   int memoStockidRandom = 0;

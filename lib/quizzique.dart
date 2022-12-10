@@ -25,65 +25,56 @@ class QuizzZizik extends StatefulWidget {
 }
 
 class _QuizzZizikState extends State<QuizzZizik> {
-  bool readBdSardouState = false;
-  bool readAlbumMzState = false;
-
-  bool quizzOver = true;
-  bool readBdState = false;
-  bool updateGameQuizzBdState = false;
-  bool createPhotoBaseState = false;
-  bool boolZoom = true;
-  bool createGameQuizzBdState = false;
-  bool boolScore = false;
-  bool readAlbumsCoversState = false;
-  bool readGameQuizzScoresState = false;
-
-  // Boolens Affichages
   bool booldisplayCase = false;
   bool booldisplayHelp = false;
   bool booldisplayListAlbumRand = false;
+  bool boolScore = false;
+  bool boolZoom = true;
+  bool chronoStart = false;
+  bool countDown = true;
+  bool createGameQuizzBdState = false;
+  bool quizzOver = true;
+  bool readAlbumMzState = false;
+  bool readAlbumsCoversState = false;
+  bool readBdSardouState = false;
 
+  bool readGameQuizzScoresState = false;
+  bool timeOut = false;
+  bool updateGameQuizzBdState = false;
+  Color colorCounter = Colors.green;
+
+  double formeImage = 0.0;
+  Duration countdownDuration = const Duration(seconds: 10000);
+  Duration duration = const Duration();
+
+  int activeQuizz = SARDOU; //   <tintin=1>
+  int forceQuizz = 2;
+  int gameNote = 0;
+  int maxSuiteMax = 0;
+  int nbGood = 0;
+  int nbQuizz = 0;
   int random = 1;
   int recordQuizz = 0;
-  int forceQuizz = 2;
   int thisGameId = 0;
-  int activeQuizz = SARDOU; //   <tintin=1>
+  int timeQuizzInitial = 60;
+  int timerQuizz = 0;
+  int totalSeconds = 60;
 
-  // Eviter les A/R avec Mysql
-  // A faire au départ
-
-  List<PhotoBd> listSardouCase = [];
-  List<AlbumMz> listAlbumMz = [];
-  List<PhotoBd> listPhotoBase = [];
   List<AlbumMz> listAlbumBd = [];
+  List<AlbumMz> listAlbumMz = [];
   List<AlbumMz> listAlbumRand = [];
-  List<GameQuizz> listMyGames = [];
   GameHistoric thisGameHistoric = GameHistoric(8, 1, 2, []);
   List<GameHistoric> listGameHistoric = [];
+  List<GameQuizz> listMyGames = [];
   List<GameQuizzScores> listGameQuizzScores = [];
-
-  int nbQuizz = 0;
-  int nbGood = 0;
-  int gameNote = 0;
-  bool chronoStart = false;
-  Duration countdownDuration = const Duration(seconds: 10000);
-  int timerQuizz = 0;
-  bool timeOut = false;
-  int totalSeconds = 60;
-  int timeQuizzInitial = 60;
-  Duration duration = const Duration();
-  Timer? timer;
-  bool countDown = true;
-  Color colorCounter = Colors.green;
-  double formeImage = 0.0;
-  double coeffSize = 1.0;
-  String reportInode = "";
+  List<PhotoBd> listPhotoBase = [];
+  List<PhotoBd> listSardouCase = [];
   String reportAnswer = "";
-  String reportQuizz = "";
   String reportGoodbd = "";
+  String reportInode = "";
+  String reportQuizz = "";
   String startButton = "Start";
-
-  int maxSuiteMax = 0;
+  Timer? timer;
 
   void addTime() {
     final addSeconds = countDown ? -1 : 1;
@@ -167,9 +158,10 @@ class _QuizzZizikState extends State<QuizzZizik> {
                           backgroundColor: Colors.blue,
                           fontWeight: FontWeight.bold)),
                   // gameNote = nbGood * (forceQuizz - 1);
-                  child: Text("-->" +(nbGood * (forceQuizz - 1)).toString()+"Pts"),
+                  child: Text(
+                      "-->" + (nbGood * (forceQuizz - 1)).toString() + "Pts"),
 
-                //  child: Text(nbGood.toString() + "/" + nbQuizz.toString()),
+                  //  child: Text(nbGood.toString() + "/" + nbQuizz.toString()),
                 ),
               ),
               Visibility(
@@ -193,23 +185,14 @@ class _QuizzZizikState extends State<QuizzZizik> {
                       tooltip: 'Help',
                       onPressed: () {
                         setState(() {
-                          booldisplayHelp=!booldisplayHelp;
+                          booldisplayHelp = !booldisplayHelp;
                         });
                       })),
             ],
           ),
         ),
       ]),
-      body:
-       !quizzOver ?displayGame() :displayNoGame(),
-          //!quizzOver ? displayGame() : (boolScore ? dispQuizzScores() :displayHelp()),
-
-          //displayGame(),
-/*      Row(children: <Widget>[
-        Align(child: buildTime()),
-       !quizzOver ? displayCase() :
-        displayListAlbumRand(),
-      ]),*/
+      body: !quizzOver ? displayGame() : displayNoGame(),
     ));
   }
 
@@ -257,7 +240,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
         recordQuizz = recordQuizz - 1;
       }
       majAlbumRand(); //
-      //  int cava = 1; //check
+
       while ((getRandomPlus()) == 1) {}
     });
   }
@@ -288,7 +271,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
             datamysql.map((xJson) => GameQuizz.fromJson(xJson)).toList();
         thisGameId = listMyGames[0].gameid;
       });
-      print(" PK create Game");
+
       majAlbumRand(); // Set d'albums New
       while ((getRandomPlus()) == 1) {}
     }
@@ -306,78 +289,67 @@ class _QuizzZizikState extends State<QuizzZizik> {
     }
     return Expanded(
         child: (GestureDetector(
-      onTap: () => {
-        setState(() {
-          boolZoom = !boolZoom;
-        })
-      },
-      child:
-    /*  Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          listPhotoBase[random].photouploader,
-          style: TextStyle(
-              color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-      ),*/
-
-      Stack(
-        children: <Widget>[
-          // Stroked text as border.
-          Text(
-            listPhotoBase[random].photouploader,
-            style: TextStyle(
-              fontSize: 20,
-              foreground: Paint()
-                ..style = PaintingStyle.stroke
-                ..strokeWidth = 6
-                ..color = Colors.blue[700]!,
-            ),
-          ),
-          // Solid text as fill.
-          Text(
-            listPhotoBase[random].photouploader,
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.grey[300],
-            ),
-          ),
-        ],
-      )
-
-    )));
+            onTap: () => {
+                  setState(() {
+                    boolZoom = !boolZoom;
+                  })
+                },
+            child: Stack(
+              children: <Widget>[
+                // Stroked text as border.
+                Text(
+                  listPhotoBase[random].photouploader,
+                  style: TextStyle(
+                    fontSize: 20,
+                    foreground: Paint()
+                      ..style = PaintingStyle.stroke
+                      ..strokeWidth = 6
+                      ..color = Colors.blue[700]!,
+                  ),
+                ),
+                // Solid text as fill.
+                Text(
+                  listPhotoBase[random].photouploader,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.grey[300],
+                  ),
+                ),
+              ],
+            ))));
   }
 
   Row displayGame() {
-    return (
-
-        Row(children: <Widget>[
+    return (Row(children: <Widget>[
       Align(child: buildTime()),
       displayCase(),
       displayListAlbumRand(),
     ]));
   }
-  Row displayNoGame() {
-    return (
 
-        Row(children: <Widget>[
-          displayHelp(),
-          dispQuizzScores(),
-        ]));
-  }
   Row displayHelp() {
-    return Row(children: [
-      Image.network(
-        "upload/helpsardou.png",
-        /*   width: 800,
-                  height: 1000,*/
+    return
+
+      Row(children: [
+      Visibility(
+        visible: booldisplayHelp,
+        child:
+
+
+          Image.network(
+            "upload/helpsardou.png",
+            /*
+             width: 800,
+             height: 1000,*/
+          ),
+
       ),
     ]);
   }
 
   Widget displayListAlbumRand() {
     // On N'affiche pas si
-    if (!readAlbumMzState || listAlbumRand.length == 0) {
+    if (!readAlbumMzState || listAlbumRand.isEmpty) {
       return (dispQuizzScores());
     }
     if (quizzOver && boolScore) {
@@ -418,6 +390,14 @@ class _QuizzZizikState extends State<QuizzZizik> {
     return Visibility(visible: boolZoom, child: (Expanded(child: listView)));
   }
 
+  Row displayNoGame() {
+    return (Row(children: <Widget>[
+      //    booldisplayHelp:displayHelp() ?dispQuizzScores(),
+      booldisplayHelp ? displayHelp() : dispQuizzScores(),
+      !booldisplayHelp ? dispQuizzScores() : displayHelp(),
+    ]));
+  }
+
   Expanded dispQuizzScores() {
     if (!readGameQuizzScoresState || !boolScore) {
       return (const Expanded(child: Text(" ")));
@@ -455,15 +435,16 @@ class _QuizzZizikState extends State<QuizzZizik> {
                 setState(() {});
               });
         });
-    return (Expanded(child: listView));
+    return (
+
+        Expanded(child: listView)
+    );
   }
 
   int getRandomPlus() {
     // <PML>
     int errorRandom = 0;
-    print(" r&ndom" + random.toString());
     random = Random().nextInt(listPhotoBase.length);
-    print(" r&listPhotoBase.length " + listPhotoBase.length.toString());
 // Trop Petit
 // Trop Court
     if (listPhotoBase[random].photofilesize < 20) {
@@ -478,7 +459,6 @@ class _QuizzZizikState extends State<QuizzZizik> {
         int ratioImage = (10 * formeImage).toInt();
         formeImage = ratioImage / 10;
 // Ici C'est OK il appartient à la lastre
-
         thisGameHistoric.thatinode = listPhotoBase[random].photoinode;
         thisGameHistoric.goodbd = listPhotoBase[random].photoalbum;
         return (0);
@@ -499,9 +479,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
   @override
   void initState() {
     super.initState();
-
     activeQuizz = SARDOU; // SArdou
-
     readBdSardou();
     readAlbumMz();
 
@@ -563,8 +541,6 @@ class _QuizzZizikState extends State<QuizzZizik> {
             datamysql.map((xJson) => AlbumMz.fromJson(xJson)).toList();
         readAlbumMzState = true;
       });
-
-      print("read OK readAlbumMz OK");
     } else {}
   }
 
@@ -583,7 +559,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
         listSardouCase
             .sort((a, b) => a.photofilename.compareTo(b.photofilename));
       });
-      print("  listSardouCase" + listSardouCase.length.toString());
+
       setThema(SARDOU); // On met tintin par defaut
     } else {}
   }
@@ -684,12 +660,9 @@ class _QuizzZizikState extends State<QuizzZizik> {
     nbQuizz = 0;
     nbGood = 0;
     thisGameId = 0;
-    coeffSize = 1.0;
 
     setState(() {
       random = Random().nextInt(listSardouCase.length - 1); //<PML> pas sur
-
-      print("random dans setThema " + random.toString());
     });
   }
 
