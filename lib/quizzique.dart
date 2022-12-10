@@ -162,11 +162,14 @@ class _QuizzZizikState extends State<QuizzZizik> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 2, vertical: 2),
                       textStyle: const TextStyle(
-                          fontSize: 17,
+                          fontSize: 20,
                           color: Colors.red,
                           backgroundColor: Colors.blue,
                           fontWeight: FontWeight.bold)),
-                  child: Text(nbGood.toString() + "/" + nbQuizz.toString()),
+                  // gameNote = nbGood * (forceQuizz - 1);
+                  child: Text("-->" +(nbGood * (forceQuizz - 1)).toString()+"Pts"),
+
+                //  child: Text(nbGood.toString() + "/" + nbQuizz.toString()),
                 ),
               ),
               Visibility(
