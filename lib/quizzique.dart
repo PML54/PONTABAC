@@ -59,7 +59,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
   int timeQuizzInitial = 60;
   int timerQuizz = 0;
   int totalSeconds = 60;
-
+  int newNote=0;
   List<AlbumMz> listAlbumBd = [];
   List<AlbumMz> listAlbumMz = [];
   List<AlbumMz> listAlbumRand = [];
@@ -130,11 +130,11 @@ class _QuizzZizikState extends State<QuizzZizik> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 2, vertical: 2),
                       textStyle: const TextStyle(
-                          fontSize: 15,
-                          color: Colors.black,
-                          backgroundColor: Colors.blue,
+                          fontSize: 20,
+                          color: Colors.red,
+                          backgroundColor: Colors.red,
                           fontWeight: FontWeight.bold)),
-                  child: Text("   Coeff: " + forceQuizz.toString()),
+                  child: Text("Coeff=" + forceQuizz.toString()),
                 ),
               ),
               Visibility(
@@ -153,13 +153,13 @@ class _QuizzZizikState extends State<QuizzZizik> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 2, vertical: 2),
                       textStyle: const TextStyle(
-                          fontSize: 20,
+                          fontSize: 25,
                           color: Colors.red,
                           backgroundColor: Colors.blue,
                           fontWeight: FontWeight.bold)),
                   // gameNote = nbGood * (forceQuizz - 1);
                   child: Text(
-                      "-->" + (nbGood * (forceQuizz - 1)).toString() + "Pts"),
+                      "             " +newNote.toString() + "Points"),
                 ),
               ),
               Visibility(
@@ -175,19 +175,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
                           booldisplayHelp = !boolScore;
                         });
                       })),
-             /* Visibility(
-                  visible: quizzOver,
-                  child: IconButton(
-                      icon: const Icon(Icons.help),
-                      iconSize: 30,
-                      color: Colors.greenAccent,
-                      tooltip: 'Help',
-                      onPressed: () {
-                        setState(() {
-                          booldisplayHelp = !booldisplayHelp;
-                          boolScore = !booldisplayHelp;
-                        });
-                      })),*/
+
             ],
           ),
         ),
@@ -236,7 +224,12 @@ class _QuizzZizikState extends State<QuizzZizik> {
       if ((indexalbum) == listPhotoBase[random].photoalbum) {
         nbGood++;
         recordQuizz = recordQuizz + successQuizz;
+        newNote=newNote+(forceQuizz - 1);
+
+
       } else {
+        newNote=newNote-1;
+
         recordQuizz = recordQuizz - 1;
       }
       majAlbumRand(); //
@@ -405,9 +398,9 @@ class _QuizzZizikState extends State<QuizzZizik> {
               title: Text(
                 " N°" +
                     (index + 1).toString() +
-                    "->" +
+                    ":" +
                     listGameQuizzScores[index].gamer.toString() +
-                    " " +
+                    "-->  " +
                     listGameQuizzScores[index].gamescore.toString() +
                     " Pts" + " <Coeff=" +
                     listGameQuizzScores[index].gameforce.toString()+">",
@@ -672,6 +665,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
       quizzOver = false;
       reportInode = "";
       startButton = totalSeconds.toString();
+      newNote=0;
     });
     createGameQuizzBd();
   }
@@ -693,7 +687,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
 
     var data = {
       "GAMEID": thisGameId.toString(),
-      "GAMESCORE": recordQuizz.toString(),
+      "GAMESCORE": newNote.toString(),
       "GAMENBGOOD": nbGood.toString(),
       "GAMENBQUEST": nbQuizz.toString(),
       "GAMEMAX": maxSuiteMax.toString(),
