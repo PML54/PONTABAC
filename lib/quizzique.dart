@@ -175,7 +175,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
                           booldisplayHelp = !boolScore;
                         });
                       })),
-              Visibility(
+             /* Visibility(
                   visible: quizzOver,
                   child: IconButton(
                       icon: const Icon(Icons.help),
@@ -187,7 +187,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
                           booldisplayHelp = !booldisplayHelp;
                           boolScore = !booldisplayHelp;
                         });
-                      })),
+                      })),*/
             ],
           ),
         ),
@@ -407,15 +407,16 @@ class _QuizzZizikState extends State<QuizzZizik> {
                     (index + 1).toString() +
                     "->" +
                     listGameQuizzScores[index].gamer.toString() +
-                    " avec " +
+                    " " +
                     listGameQuizzScores[index].gamescore.toString() +
-                    " Pts",
+                    " Pts" + " <Coeff=" +
+                    listGameQuizzScores[index].gameforce.toString()+">",
                 style: TextStyle(
                     color: Colors.black,
                     fontStyle: FontStyle.normal,
-                    fontSize: 10),
+                    fontSize:15),
               ),
-              subtitle: Text(
+           /*   subtitle: Text(
                 " <" +
                     listGameQuizzScores[index].gamenbgood.toString() +
                     "/" +
@@ -424,7 +425,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
                     listGameQuizzScores[index].gameforce.toString(),
                 style: TextStyle(
                     fontSize: 10, fontFamily: 'Serif', color: Colors.black),
-              ),
+              ),*/
               onTap: () {
                 setState(() {});
               });
