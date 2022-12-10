@@ -201,9 +201,10 @@ class _QuizzZizikState extends State<QuizzZizik> {
         ),
       ]),
       body:
-          //!quizzOver ?displayGame() :displayHelp(),
-          !quizzOver ? displayGame() :displayHelp(),
-      //displayGame(),
+       !quizzOver ?displayGame() :displayNoGame(),
+          //!quizzOver ? displayGame() : (boolScore ? dispQuizzScores() :displayHelp()),
+
+          //displayGame(),
 /*      Row(children: <Widget>[
         Align(child: buildTime()),
        !quizzOver ? displayCase() :
@@ -348,13 +349,22 @@ class _QuizzZizikState extends State<QuizzZizik> {
   }
 
   Row displayGame() {
-    return (Row(children: <Widget>[
+    return (
+
+        Row(children: <Widget>[
       Align(child: buildTime()),
       displayCase(),
       displayListAlbumRand(),
     ]));
   }
+  Row displayNoGame() {
+    return (
 
+        Row(children: <Widget>[
+          displayHelp(),
+          dispQuizzScores(),
+        ]));
+  }
   Row displayHelp() {
     return Row(children: [
       Image.network(
@@ -405,7 +415,6 @@ class _QuizzZizikState extends State<QuizzZizik> {
                 });
               });
         });
-
     return Visibility(visible: boolZoom, child: (Expanded(child: listView)));
   }
 
