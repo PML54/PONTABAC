@@ -160,7 +160,6 @@ class _QuizzZizikState extends State<QuizzZizik> {
                   // gameNote = nbGood * (forceQuizz - 1);
                   child: Text(
                       "-->" + (nbGood * (forceQuizz - 1)).toString() + "Pts"),
-
                 ),
               ),
               Visibility(
@@ -173,7 +172,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
                       onPressed: () {
                         setState(() {
                           boolScore = !boolScore;
-                          booldisplayHelp=!boolScore;
+                          booldisplayHelp = !boolScore;
                         });
                       })),
               Visibility(
@@ -186,7 +185,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
                       onPressed: () {
                         setState(() {
                           booldisplayHelp = !booldisplayHelp;
-                          boolScore=!booldisplayHelp;
+                          boolScore = !booldisplayHelp;
                         });
                       })),
             ],
@@ -329,21 +328,15 @@ class _QuizzZizikState extends State<QuizzZizik> {
   }
 
   Row displayHelp() {
-    return
-
-      Row(children: [
+    return Row(children: [
       Visibility(
         visible: booldisplayHelp,
-        child:
-
-
-          Image.network(
-            "upload/helpsardou.png",
-            /*
+        child: Image.network(
+          "upload/helpsardou.png",
+          /*
              width: 800,
              height: 1000,*/
-          ),
-
+        ),
       ),
     ]);
   }
@@ -395,7 +388,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
     return (Row(children: <Widget>[
       //    booldisplayHelp:displayHelp() ?dispQuizzScores(),
       booldisplayHelp ? displayHelp() : dispQuizzScores(),
-      !booldisplayHelp ? dispQuizzScores() : displayHelp(),
+      //  !booldisplayHelp ? dispQuizzScores() : displayHelp(),
     ]));
   }
 
@@ -436,10 +429,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
                 setState(() {});
               });
         });
-    return (
-
-        Expanded(child: listView)
-    );
+    return (Expanded(child: listView));
   }
 
   int getRandomPlus() {
