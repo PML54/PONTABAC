@@ -157,9 +157,9 @@ class _QuizzZizikState extends State<QuizzZizik> {
                           color: Colors.red,
                           backgroundColor: Colors.blue,
                           fontWeight: FontWeight.bold)),
-                  // gameNote = nbGood * (forceQuizz - 1);
+
                   child: Text(
-                      "             " +newNote.toString() + "Points"),
+                      "             " +newNote.toString() + " Points"),
                 ),
               ),
               Visibility(
@@ -290,22 +290,14 @@ class _QuizzZizikState extends State<QuizzZizik> {
             child: Stack(
               children: <Widget>[
                 // Stroked text as border.
-                Text(
-                  listPhotoBase[random].photouploader,
-                  style: TextStyle(
-                    fontSize: 20,
-                    foreground: Paint()
-                      ..style = PaintingStyle.stroke
-                      ..strokeWidth = 6
-                      ..color = Colors.blue[700]!,
-                  ),
-                ),
+
                 // Solid text as fill.
                 Text(
                   listPhotoBase[random].photouploader,
                   style: TextStyle(
                     fontSize: 20,
-                    color: Colors.grey[300],
+                    foreground: Paint()
+                      ..color = Colors.green,
                   ),
                 ),
               ],
@@ -405,6 +397,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
                     " Pts" + " <Coeff=" +
                     listGameQuizzScores[index].gameforce.toString()+">",
                 style: TextStyle(
+                    fontFamily: 'Lobster',
                     color: Colors.black,
                     fontStyle: FontStyle.normal,
                     fontSize:15),
