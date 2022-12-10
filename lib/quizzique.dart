@@ -184,6 +184,18 @@ class _QuizzZizikState extends State<QuizzZizik> {
                           boolScore = !boolScore;
                         });
                       })),
+              Visibility(
+                  visible: quizzOver,
+                  child: IconButton(
+                      icon: const Icon(Icons.help),
+                      iconSize: 30,
+                      color: Colors.greenAccent,
+                      tooltip: 'Help',
+                      onPressed: () {
+                        setState(() {
+                          booldisplayHelp=!booldisplayHelp;
+                        });
+                      })),
             ],
           ),
         ),
@@ -354,6 +366,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
   }
 
   Widget displayListAlbumRand() {
+    // On N'affiche pas si
     if (!readAlbumMzState || listAlbumRand.length == 0) {
       return (dispQuizzScores());
     }
@@ -370,16 +383,16 @@ class _QuizzZizikState extends State<QuizzZizik> {
               title: Column(
                 children: [
                   Image.network(
-                    "upload/" + listAlbumRand[index].albumcode + ".png",
+                    "upload/" + listAlbumRand[index].albumcode + ".jpg",
                     width: forceQuizz >= 4 ? 128 : 192,
                     height: forceQuizz >= 4 ? 128 : 192,
                   ),
                   Text(
                     listAlbumRand[index].albumname,
                     style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.red,
                         fontStyle: FontStyle.normal,
-                        fontSize: 8),
+                        fontSize: 10),
                   ),
                 ],
               ),
