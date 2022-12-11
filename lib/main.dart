@@ -40,7 +40,7 @@ class _MenoPaulState extends State<MenoPaul> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'paul2pontoise 2.31-->' + QuizzCommons.myPseudo,
+          'Bac de LUCHY 1.1 -->' + QuizzCommons.myPseudo,
           style: GoogleFonts.averageSans(fontSize: 15.0),
         ),
       ),
@@ -165,7 +165,7 @@ class _MenoPaulState extends State<MenoPaul> {
                   ),
                   //--> Tintin
                   Visibility(
-                    visible: QuizzCommons.myProfile == CERTIFIED_PML,
+                    visible: QuizzCommons.myProfile & 5 == 5,
                     child: Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: ElevatedButton(
@@ -207,7 +207,7 @@ class _MenoPaulState extends State<MenoPaul> {
                   ),
                   //--> Sardou
                   Visibility(
-                    visible: QuizzCommons.myProfile == CERTIFIED_PML ||QuizzCommons.myProfile == 5 ,
+                    visible: QuizzCommons.myProfile &5  == 5 ,
                     child: Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: ElevatedButton(

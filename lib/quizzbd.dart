@@ -33,7 +33,7 @@ class _QuizzBdState extends State<QuizzBd> {
   bool readGameQuizzScoresState = false;
   int random = 1;
   int recordQuizz = 0;
-  int forceQuizz = 1;
+  int forceQuizz = 2;
   int thisGameId = 0;
   int activeQuizz = 2; // <Asterix=2 >  <tintin=1>
   int gameNote=0;
@@ -115,22 +115,7 @@ class _QuizzBdState extends State<QuizzBd> {
                     tooltip: 'Quitter',
                     onPressed: () => {Navigator.pop(context)},
                   )),
-              Visibility(
-                visible: quizzOver,
-                child: ElevatedButton(
-                  onPressed: () => {startQuizz()},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 2, vertical: 2),
-                      textStyle: const TextStyle(
-                          fontSize: 15,
-                          color: Colors.red,
-                          //  backgroundColor: Colors.black,
-                          fontWeight: FontWeight.bold)),
-                  child: Text(startButton),
-                ),
-              ),
+
               Visibility(
                 visible: quizzOver,
                 child: ElevatedButton(
@@ -147,7 +132,21 @@ class _QuizzBdState extends State<QuizzBd> {
                   child: Text("Coeff: " + forceQuizz.toString()),
                 ),
               ),
-
+              Visibility(
+                visible: quizzOver,
+                child: ElevatedButton(
+                  onPressed: () => {startQuizz()},
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 2, vertical: 2),
+                      textStyle: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold)),
+                  child: Text(startButton),
+                ),
+              ),
               Visibility(
                 visible: chronoStart && totalSeconds < 9900 && !quizzOver,
                 child: Text(
@@ -169,11 +168,27 @@ class _QuizzBdState extends State<QuizzBd> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 2, vertical: 2),
                       textStyle: const TextStyle(
-                          fontSize: 15,
+                          fontSize: 25,
                           color: Colors.red,
                           backgroundColor: Colors.blue,
                           fontWeight: FontWeight.bold)),
-                  child: Text(" "+nbGood.toString() + "/" + nbQuizz.toString()),
+                  child: Text("             " + newNote.toString() + " Points"),
+                ),
+              ),
+              Visibility(
+                visible: quizzOver,
+                child: ElevatedButton(
+                  onPressed: () => {incForce()},
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 2, vertical: 2),
+                      textStyle: const TextStyle(
+                          fontSize: 15,
+                          color: Colors.red,
+                          backgroundColor: Colors.green,
+                          fontWeight: FontWeight.bold)),
+                  child: Text("Force=" + forceQuizz.toString()),
                 ),
               ),
             ],
@@ -428,7 +443,7 @@ class _QuizzBdState extends State<QuizzBd> {
     if (!quizzOver) return; // Securité
     setState(() {
       forceQuizz++;
-      if (forceQuizz > 14) forceQuizz = 1;
+      if (forceQuizz > 14) forceQuizz = 2;
     });
   }
 
@@ -694,6 +709,7 @@ class _QuizzBdState extends State<QuizzBd> {
       newNote = 0;
       quizzHit = true;
       booldisplayHelp = true;
+
 
     });
     createGameQuizzBd();
