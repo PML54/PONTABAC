@@ -84,7 +84,7 @@ class _CreatePage extends State<CreatePage> {
           Container(
             margin: const EdgeInsets.only(top: 80),
             child: const Text(
-              "Candidature au Bac  de PONTOISE",
+              "Candidature au Bac S/T de  LUCHY",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 40,

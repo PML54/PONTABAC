@@ -116,22 +116,7 @@ class _QuizzBdState extends State<QuizzBd> {
                     onPressed: () => {Navigator.pop(context)},
                   )),
 
-              Visibility(
-                visible: quizzOver,
-                child: ElevatedButton(
-                  onPressed: () => {incForce()},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 2, vertical: 2),
-                      textStyle: const TextStyle(
-                          fontSize: 15,
-                          color: Colors.black,
-                          backgroundColor: Colors.blue,
-                          fontWeight: FontWeight.bold)),
-                  child: Text("Coeff: " + forceQuizz.toString()),
-                ),
-              ),
+
               Visibility(
                 visible: quizzOver,
                 child: ElevatedButton(
