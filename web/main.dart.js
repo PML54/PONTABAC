@@ -70514,8 +70514,8 @@ A.a87(B.kV)
 s=t.w
 r=a.Z(s).f
 s=a.Z(s).f
-q=A.c0(j,B.Op,j,j,j,j,B.mv,j,j)
-p=A.c0(j,B.Oy,j,j,j,j,B.cR,j,j)
+q=A.c0(j,B.Ou,j,j,j,j,B.mv,j,j)
+p=A.c0(j,B.OA,j,j,j,j,B.cR,j,j)
 o=k.e
 o===$&&A.b()
 if(o){o=k.d
@@ -70532,7 +70532,7 @@ m=A.c0(j,A.Kd(k.y,k.nm(B.mX,"Mot de Passe"),!0,new A.acX(k),m),j,j,j,j,j,B.b0,j)
 l=k.f
 l===$&&A.b()
 l=l?A.m_(A.awv(B.aR,B.xK),30,30):B.Ox
-return A.r7(j,A.alg(A.c0(j,A.iz(A.a([q,p,o,n,m,A.c0(j,A.m_(A.e4(l,new A.acY(k),j),60,1/0),j,j,j,j,B.dR,B.b0,j),A.c0(j,A.akG(!1,j,!0,B.Ot,!1,j,!0,!1,j,j,j,B.fi,j,j,j,j,j,j,j,j,new A.acZ(),j,j,j,j,j,j,j,j),j,j,j,j,B.dR,B.b0,j)],t.p),B.L,B.aI,B.G),j,new A.aM(0,1/0,r.a.b,1/0),B.fh,j,j,B.fM,s.a.a)),j,j)},
+return A.r7(j,A.alg(A.c0(j,A.iz(A.a([q,p,o,n,m,A.c0(j,A.m_(A.e4(l,new A.acY(k),j),60,1/0),j,j,j,j,B.dR,B.b0,j),A.c0(j,A.akG(!1,j,!0,B.Os,!1,j,!0,!1,j,j,j,B.fi,j,j,j,j,j,j,j,j,new A.acZ(),j,j,j,j,j,j,j,j),j,j,j,j,B.dR,B.b0,j)],t.p),B.L,B.aI,B.G),j,new A.aM(0,1/0,r.a.b,1/0),B.fh,j,j,B.fM,s.a.a)),j,j)},
 qS(){var s=0,r=A.G(t.z),q=this,p,o,n,m,l
 var $async$qS=A.H(function(a,b){if(a===1)return A.D(b,r)
 while(true)switch(s){case 0:m=A.cV("https://paul2pontoise.com/php/readPONTABACUSERS.php",0,null)
@@ -70636,8 +70636,8 @@ r=A.uF(A.a([A.f0(A.fK(A.a([A.h3(B.l,B.h2,30,new A.abg(a),"Home")],s),B.L,B.G))],
 q=t.w
 p=a.Z(q).f
 q=a.Z(q).f
-o=A.c0(h,B.OA,h,h,h,h,B.mv,h,h)
-n=A.c0(h,B.Ou,h,h,h,h,B.cR,h,h)
+o=A.c0(h,B.Oz,h,h,h,h,B.mv,h,h)
+n=A.c0(h,B.Ot,h,h,h,h,B.cR,h,h)
 i.e===$&&A.b()
 m=A.c0(h,h,h,h,h,h,h,h,h)
 m=A.c0(h,m,h,h,h,h,B.mu,B.b0,h)
@@ -70736,7 +70736,7 @@ m(){var s=this.d
 s===$&&A.b()
 s.m()
 this.aL()},
-O(a){var s,r,q=this,p=null,o=t.p,n=A.uF(A.a([A.f0(A.fK(A.a([A.e4(B.Os,new A.ahc(a),A.jQ(p,p,B.R,p,p,p,p,p,p,p,p,p,B.C9,p,p,p,p,B.NO,p))],o),B.L,B.G))],o),p),m=q.e
+O(a){var s,r,q=this,p=null,o=t.p,n=A.uF(A.a([A.f0(A.fK(A.a([A.e4(B.Or,new A.ahc(a),A.jQ(p,p,B.R,p,p,p,p,p,p,p,p,p,B.C9,p,p,p,p,B.NO,p))],o),B.L,B.G))],o),p),m=q.e
 m===$&&A.b()
 m=A.iz(A.a([new A.q_(m,new A.ahd(q),p,t.qs)],o),B.L,B.aI,B.G)
 s=q.d
@@ -75067,10 +75067,10 @@ B.Ce=new A.jS(!0)
 B.Cf=new A.jT(!1)
 B.Cg=new A.jT(!0)
 B.dT=new A.FH(0,"tight")
-B.Oq=new A.dY(".............",null,null,null,null,null,null,null,null)
-B.Ch=new A.pV(1,B.dT,B.Oq,null)
-B.Oz=new A.dY(" ",null,null,null,null,null,null,null,null)
-B.Ci=new A.pV(1,B.dT,B.Oz,null)
+B.Op=new A.dY(".............",null,null,null,null,null,null,null,null)
+B.Ch=new A.pV(1,B.dT,B.Op,null)
+B.Oy=new A.dY(" ",null,null,null,null,null,null,null,null)
+B.Ci=new A.pV(1,B.dT,B.Oy,null)
 B.Cj=new A.vT(null,null,null,null,null,null,null,null,null)
 B.mz=new A.jU(!1,!1,!1,!1)
 B.mA=new A.jU(!1,!1,!1,!0)
@@ -75316,8 +75316,8 @@ B.nc=A.a(s(["text","multiline","number","phone","datetime","emailAddress","url",
 B.nd=A.a(s([0,0,26624,1023,65534,2047,65534,2047]),t.t)
 B.Fn=new A.ly("en","US")
 B.ne=A.a(s([B.Fn]),t.ss)
-B.Or=new A.dY(".......",null,null,null,null,null,null,null,null)
-B.El=A.a(s([B.Or]),t.p)
+B.Oq=new A.dY(".......",null,null,null,null,null,null,null,null)
+B.El=A.a(s([B.Oq]),t.p)
 B.lj=new A.tT(0,"named")
 B.Rm=new A.tT(1,"anonymous")
 B.Er=A.a(s([B.lj,B.Rm]),A.a5("t<tT>"))
@@ -76918,19 +76918,19 @@ B.Nc=new A.r(!0,B.j,null,"Roboto",null,null,null,null,null,null,null,null,null,n
 B.On=new A.ea(B.MU,B.O6,B.NQ,B.LA,B.NH,B.MN,B.Oa,B.M2,B.Mu,B.NC,B.Lv,B.NS,B.NF,B.Nz,B.Nc)
 B.wq=new A.z4(1,"longestLine")
 B.Oo=new A.dY("Password Oubli\xe9? Troubleshoot",null,B.wo,null,null,null,null,null,null)
-B.LK=new A.r(!0,B.j,null,null,null,null,35,B.ab,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.Op=new A.dY("Passez le Bac de \ud83c\udf84 ",null,B.LK,null,null,null,null,null,null)
-B.Os=new A.dY("Exit",null,null,null,null,null,null,null,null)
+B.Or=new A.dY("Exit",null,null,null,null,null,null,null,null)
 B.N2=new A.r(!0,B.j,null,null,null,null,20,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.Ot=new A.dY("Password Oubli\xe9? -> \u260e\ufe0f Paul",null,B.N2,null,null,null,null,null,null)
+B.Os=new A.dY("Password Oubli\xe9? -> \u260e\ufe0f Paul",null,B.N2,null,null,null,null,null,null)
 B.wp=new A.r(!0,B.j,null,null,null,null,15,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.Ou=new A.dY("Paul validera la demande",null,B.wp,null,null,null,null,null,null)
+B.Ot=new A.dY("Paul validera la demande",null,B.wp,null,null,null,null,null,null)
+B.LK=new A.r(!0,B.j,null,null,null,null,35,B.ab,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
+B.Ou=new A.dY("Passez le Bac S  de \ud83c\udf84 ",null,B.LK,null,null,null,null,null,null)
 B.wn=new A.r(!0,null,null,null,null,null,20,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.Ov=new A.dY("Appuyer pour CREATION",null,B.wn,null,null,null,null,null,null)
 B.Ox=new A.dY("LOGIN ",null,B.wn,null,null,null,null,null,null)
-B.Oy=new A.dY("Bac Tintin/Asterix ",null,B.wp,null,null,null,null,null,null)
 B.LL=new A.r(!0,B.j,null,null,null,null,40,B.ab,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.OA=new A.dY("Candidature au Bac  de PONTOISE",null,B.LL,null,null,null,null,null,null)
+B.Oz=new A.dY("Candidature au Bac  de PONTOISE",null,B.LL,null,null,null,null,null,null)
+B.OA=new A.dY("Bac S(ardou)   ",null,B.wp,null,null,null,null,null,null)
 B.OB=new A.z5(null)
 B.wr=new A.z6(3,"decal")
 B.OC=new A.z7(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
