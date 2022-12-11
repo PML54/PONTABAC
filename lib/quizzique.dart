@@ -282,7 +282,8 @@ class _QuizzZizikState extends State<QuizzZizik> {
         child: (GestureDetector(
             onTap: () => {
                   setState(() {
-                    boolZoom = !boolZoom;
+                    //<PML> pas de zoom  pour du text
+                  //  boolZoom = !boolZoom;
                   })
                 },
             child: Stack(
@@ -348,7 +349,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
                     style: TextStyle(
                         color: Colors.red,
                         fontStyle: FontStyle.normal,
-                        fontSize: 10),
+                        fontSize: 12),
                   ),
                 ],
               ),
@@ -423,7 +424,11 @@ class _QuizzZizikState extends State<QuizzZizik> {
     random = Random().nextInt(listPhotoBase.length);
 // Trop Petit
 // Trop Court
-    if (listPhotoBase[random].photofilesize < 20) {
+    if (listPhotoBase[random].photofilesize <  8 ) {
+      errorRandom = 1;
+      return (errorRandom);
+    }
+    if (listPhotoBase[random].photowidth < 1) { // Les Doublons
       errorRandom = 1;
       return (errorRandom);
     }
