@@ -105,7 +105,7 @@ class _MenoPaulState extends State<MenoPaul> {
                   // VideoPlayerApp
 
                   Visibility(
-                    visible: QuizzCommons.myProfile != CERTIFIED_PML &&  QuizzCommons.myProfile == 5,
+                    visible: QuizzCommons.myProfile != CERTIFIED_PML &&  QuizzCommons.myProfile != 5,
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
