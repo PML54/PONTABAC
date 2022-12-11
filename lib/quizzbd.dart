@@ -40,6 +40,11 @@ class _QuizzBdState extends State<QuizzBd> {
   // Eviter les A/R avec Mysql
   // A faire au départ
 
+
+  int newNote = 0;
+  bool quizzHit = true;
+ bool  booldisplayHelp = true;
+
   List<PhotoBd> listTintinCase = [];
   List<PhotoBd> listAsterixCase = [];
   List<AlbumBd> listTintinCover = [];
@@ -221,9 +226,11 @@ class _QuizzBdState extends State<QuizzBd> {
 
       if ((indexalbum) == listPhotoBase[random].photoalbum) {
         nbGood++;
+        newNote = newNote + (forceQuizz - 1);
         recordQuizz = recordQuizz + successQuizz;
       } else {
         recordQuizz = recordQuizz - 1;
+        newNote = newNote -1;
       }
       majAlbumRand(); //
       //  int cava = 1; //check
@@ -345,20 +352,23 @@ class _QuizzBdState extends State<QuizzBd> {
           return ListTile(
               dense: true,
               title: Text(
-
-                    " N°" +
+                " N°" +
                     (index + 1).toString() +
-                    "->" +
+                    ":" +
                     listGameQuizzScores[index].gamer.toString() +
-                    " " +
-                    listGameQuizzScores[index].gamenote.toString() +
-                    " Pts",
+                    "-->  " +
+                    listGameQuizzScores[index].gamescore.toString() +
+                    " Pts" +
+                    " <Niveau=" +
+                    listGameQuizzScores[index].gameforce.toString() +
+                    ">",
                 style: TextStyle(
+                    fontFamily: 'Lobster',
                     color: Colors.black,
                     fontStyle: FontStyle.normal,
-                    fontSize: 10),
+                    fontSize: 15),
               ),
-              subtitle: Text(
+              /*subtitle: Text(
                 "Coeff=" +
                     listGameQuizzScores[index].gameforce.toString() +
                     " " +
@@ -372,7 +382,7 @@ class _QuizzBdState extends State<QuizzBd> {
 
                 style: TextStyle(
                     fontSize: 8, fontFamily: 'Serif', color: Colors.red),
-              ),
+              ),*/
               onTap: () {
                 setState(() {});
               });
@@ -681,6 +691,10 @@ class _QuizzBdState extends State<QuizzBd> {
       quizzOver = false;
       reportInode = "";
       startButton = totalSeconds.toString();
+      newNote = 0;
+      quizzHit = true;
+      booldisplayHelp = true;
+
     });
     createGameQuizzBd();
   }
@@ -702,7 +716,7 @@ class _QuizzBdState extends State<QuizzBd> {
 
     var data = {
       "GAMEID": thisGameId.toString(),
-      "GAMESCORE": recordQuizz.toString(),
+      "GAMESCORE": newNote.toString(),
       "GAMENBGOOD": nbGood.toString(),
       "GAMENBQUEST": nbQuizz.toString(),
       "GAMEMAX": maxSuiteMax.toString(),

@@ -392,7 +392,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
                     "-->  " +
                     listGameQuizzScores[index].gamescore.toString() +
                     " Pts" +
-                    " <Coeff=" +
+                    " <Niveau=" +
                     listGameQuizzScores[index].gameforce.toString() +
                     ">",
                 style: TextStyle(
