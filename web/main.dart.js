@@ -69701,7 +69701,8 @@ r=a.Z(r).f
 p=$.a2V
 p=A.df(new A.dp(B.b0,A.e4(A.cq("Espace Candidat",h,h,h,A.ni(B.l,25),h,h),new A.adx(this,a),h),h),p===0)
 o=$.qV
-o=A.df(new A.dp(B.b0,A.e4(A.cq("Nouveau Candidat?",h,h,h,A.ni(B.l,25),h,h),new A.ady(a),h),h),o!==65)
+o=o!==65||o===5
+o=A.df(new A.dp(B.b0,A.e4(A.cq("Nouveau Candidat?",h,h,h,A.ni(B.l,25),h,h),new A.ady(a),h),h),o)
 n=$.qV
 n=A.df(new A.dp(B.au,A.e4(A.cq("R\xe9viser TINTIN",h,h,h,A.ni(h,15),h,h),new A.adz(a),h),h),n===65)
 m=$.qV
@@ -69711,8 +69712,9 @@ l=A.df(new A.dp(B.au,A.e4(A.cq("Bac T(intin)",h,h,h,A.ni(h,25),h,h),new A.adB(a)
 k=$.qV
 k=A.df(new A.dp(B.au,A.e4(A.cq("Bac A(sterix)",h,h,h,A.ni(h,25),h,h),new A.adC(a),h),h),k===65)
 j=$.qV
+j=j===65||j===5
 i=t.p
-return A.r7(s,A.alg(A.c0(h,A.iz(A.a([A.iz(A.a([p,o,n,m,l,k,A.df(new A.dp(B.au,A.e4(A.cq("Bac S(ardou)",h,h,h,A.ni(h,25),h,h),new A.adD(a),h),h),j===65)],i),B.fA,B.aI,B.G)],i),B.L,B.aI,B.G),h,new A.aM(0,1/0,q.a.b,1/0),B.fh,400,h,h,r.a.a)),h,h)},
+return A.r7(s,A.alg(A.c0(h,A.iz(A.a([A.iz(A.a([p,o,n,m,l,k,A.df(new A.dp(B.au,A.e4(A.cq("Bac S(ardou)",h,h,h,A.ni(h,25),h,h),new A.adD(a),h),h),j)],i),B.fA,B.aI,B.G)],i),B.L,B.aI,B.G),h,new A.aM(0,1/0,q.a.b,1/0),B.fh,400,h,h,r.a.a)),h,h)},
 m(){this.aL()},
 av(){this.aM()
 this.L(new A.adE(this))}}

@@ -105,7 +105,7 @@ class _MenoPaulState extends State<MenoPaul> {
                   // VideoPlayerApp
 
                   Visibility(
-                    visible: QuizzCommons.myProfile != CERTIFIED_PML,
+                    visible: QuizzCommons.myProfile != CERTIFIED_PML || QuizzCommons.myProfile == 5,
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
@@ -207,7 +207,7 @@ class _MenoPaulState extends State<MenoPaul> {
                   ),
                   //--> Sardou
                   Visibility(
-                    visible: QuizzCommons.myProfile == CERTIFIED_PML,
+                    visible: QuizzCommons.myProfile == CERTIFIED_PML ||QuizzCommons.myProfile == 5 ,
                     child: Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: ElevatedButton(
