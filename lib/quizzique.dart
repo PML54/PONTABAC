@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:pontabac/configquizz.dart';
 import 'package:pontabac/quizzclass.dart';
 import 'package:pontabac/quizzcommons.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // Quizz orienté Album 33 T
 // Ce sont pas des  cases dse pagers d'albums mais des  vers de chansons de BD
@@ -26,7 +27,7 @@ class QuizzZizik extends StatefulWidget {
 
 class _QuizzZizikState extends State<QuizzZizik> {
   bool booldisplayCase = false;
-  bool booldisplayHelp = false;
+  bool booldisplayHelp = true;
   bool booldisplayListAlbumRand = false;
   bool boolScore = false;
   bool boolZoom = true;
@@ -37,6 +38,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
   bool readAlbumMzState = false;
   bool readAlbumsCoversState = false;
   bool readBdSardouState = false;
+  bool quizzHit = true;
 
   bool readGameQuizzScoresState = false;
   bool timeOut = false;
@@ -59,7 +61,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
   int timeQuizzInitial = 60;
   int timerQuizz = 0;
   int totalSeconds = 60;
-  int newNote=0;
+  int newNote = 0;
   List<AlbumMz> listAlbumBd = [];
   List<AlbumMz> listAlbumMz = [];
   List<AlbumMz> listAlbumRand = [];
@@ -122,22 +124,6 @@ class _QuizzZizikState extends State<QuizzZizik> {
                 ),
               ),
               Visibility(
-                visible: quizzOver,
-                child: ElevatedButton(
-                  onPressed: () => {incForce()},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 2, vertical: 2),
-                      textStyle: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.red,
-                          backgroundColor: Colors.red,
-                          fontWeight: FontWeight.bold)),
-                  child: Text("Coeff=" + forceQuizz.toString()),
-                ),
-              ),
-              Visibility(
                 visible: chronoStart && totalSeconds < 9900 && !quizzOver,
                 child: Text(totalSeconds.toString() + 's',
                     style: TextStyle(
@@ -157,9 +143,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
                           color: Colors.red,
                           backgroundColor: Colors.blue,
                           fontWeight: FontWeight.bold)),
-
-                  child: Text(
-                      "             " +newNote.toString() + " Points"),
+                  child: Text("             " + newNote.toString() + " Points"),
                 ),
               ),
               Visibility(
@@ -175,7 +159,22 @@ class _QuizzZizikState extends State<QuizzZizik> {
                           booldisplayHelp = !boolScore;
                         });
                       })),
-
+              Visibility(
+                visible: quizzOver,
+                child: ElevatedButton(
+                  onPressed: () => {incForce()},
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 2, vertical: 2),
+                      textStyle: const TextStyle(
+                          fontSize: 15,
+                          color: Colors.red,
+                          backgroundColor: Colors.green,
+                          fontWeight: FontWeight.bold)),
+                  child: Text("Force=" + forceQuizz.toString()),
+                ),
+              ),
             ],
           ),
         ),
@@ -224,11 +223,9 @@ class _QuizzZizikState extends State<QuizzZizik> {
       if ((indexalbum) == listPhotoBase[random].photoalbum) {
         nbGood++;
         recordQuizz = recordQuizz + successQuizz;
-        newNote=newNote+(forceQuizz - 1);
-
-
+        newNote = newNote + (forceQuizz - 1);
       } else {
-        newNote=newNote-1;
+        newNote = newNote - 1;
 
         recordQuizz = recordQuizz - 1;
       }
@@ -271,6 +268,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
   }
 
   Expanded displayCase() {
+    quizzHit = false;
     if (!readBdSardouState) {
       return Expanded(
         child: Column(
@@ -294,11 +292,8 @@ class _QuizzZizikState extends State<QuizzZizik> {
                 // Solid text as fill.
                 Text(
                   listPhotoBase[random].photouploader,
-                  style: TextStyle(
-                    fontSize: 20,
-                    foreground: Paint()
-                      ..color = Colors.green,
-                  ),
+                  textDirection: TextDirection.ltr,
+                  style: GoogleFonts.pacifico(fontSize: 22),
                 ),
               ],
             ))));
@@ -359,7 +354,8 @@ class _QuizzZizikState extends State<QuizzZizik> {
               ),
               onTap: () {
                 setState(() {
-                  if (!quizzOver) {
+                  if (!quizzOver && !quizzHit) {
+                    quizzHit = true;
                     int indexOrigine = listAlbumRand[index].albumid;
                     checkQuizz(indexOrigine);
                   }
@@ -394,15 +390,17 @@ class _QuizzZizikState extends State<QuizzZizik> {
                     listGameQuizzScores[index].gamer.toString() +
                     "-->  " +
                     listGameQuizzScores[index].gamescore.toString() +
-                    " Pts" + " <Coeff=" +
-                    listGameQuizzScores[index].gameforce.toString()+">",
+                    " Pts" +
+                    " <Coeff=" +
+                    listGameQuizzScores[index].gameforce.toString() +
+                    ">",
                 style: TextStyle(
                     fontFamily: 'Lobster',
                     color: Colors.black,
                     fontStyle: FontStyle.normal,
-                    fontSize:15),
+                    fontSize: 15),
               ),
-           /*   subtitle: Text(
+              /*   subtitle: Text(
                 " <" +
                     listGameQuizzScores[index].gamenbgood.toString() +
                     "/" +
@@ -658,7 +656,9 @@ class _QuizzZizikState extends State<QuizzZizik> {
       quizzOver = false;
       reportInode = "";
       startButton = totalSeconds.toString();
-      newNote=0;
+      newNote = 0;
+      quizzHit = true;
+      booldisplayHelp = true;
     });
     createGameQuizzBd();
   }
