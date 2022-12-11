@@ -139,7 +139,7 @@ class _CreatePage extends State<CreatePage> {
               },
             ),
           ),
-          Container(
+   /*       Container(
             padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
             margin: const EdgeInsets.only(top: 10),
             child: TextField(
@@ -154,7 +154,7 @@ class _CreatePage extends State<CreatePage> {
                 email = value;
               },
             ),
-          ),
+          ),*/
           Container(
             padding: const EdgeInsets.all(10),
             margin: const EdgeInsets.only(top: 20),
@@ -184,12 +184,7 @@ class _CreatePage extends State<CreatePage> {
                         "Appuyer pour CREATION",
                         style: TextStyle(fontSize: 20),
                       ),
-                /* colorBrightness: Brightness.dark,
-                color: Colors.orange,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)
-                    //button corner radius
-                    ),*/
+
               ),
             ),
           ),

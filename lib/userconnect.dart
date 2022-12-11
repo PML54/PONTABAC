@@ -141,7 +141,7 @@ class _LoginPage extends State<LoginPage> {
                         ),
                       )
                     : const Text(
-                        "LOGIN ",
+                        "VALIDER ",
                         style: TextStyle(fontSize: 20),
                       ),
 
@@ -268,7 +268,7 @@ class _LoginPage extends State<LoginPage> {
           error = false;
           showprogress = false; //don't show progress indicator
           error = true;
-          errormsg = "Contacte Paul";
+          errormsg = "Contacter Paul";
         });
       }
     }
