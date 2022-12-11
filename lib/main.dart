@@ -40,7 +40,7 @@ class _MenoPaulState extends State<MenoPaul> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'paul2pontoise 2.26' + QuizzCommons.myPseudo,
+          'paul2pontoise 2.27-->' + QuizzCommons.myPseudo,
           style: GoogleFonts.averageSans(fontSize: 15.0),
         ),
       ),
@@ -105,7 +105,7 @@ class _MenoPaulState extends State<MenoPaul> {
                   // VideoPlayerApp
 
                   Visibility(
-                    visible: QuizzCommons.myProfile != CERTIFIED_PML || QuizzCommons.myProfile == 5,
+                    visible: QuizzCommons.myProfile != CERTIFIED_PML &&  QuizzCommons.myProfile == 5,
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
