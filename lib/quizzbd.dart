@@ -223,7 +223,6 @@ class _QuizzBdState extends State<QuizzBd> {
       listGameHistoric.add(thisGameHistoric);
       //
       thisGameHistoric = GameHistoric(8, 1, 2, []);
-
       if ((indexalbum) == listPhotoBase[random].photoalbum) {
         nbGood++;
         newNote = newNote + (forceQuizz - 1);

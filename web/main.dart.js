@@ -69678,7 +69678,7 @@ A.NA.prototype={
 O(a){var s,r,q,p,o,n,m,l,k,j,i,h=null
 this.L(new A.adv())
 A.a86(B.kU)
-s=A.uF(h,A.cz("Bac de LUCHY 1.1 -->"+$.a2T,h,h,h,A.ni(h,15),h,h))
+s=A.uF(h,A.cz("Bac de LUCHY 1.3 -->"+$.a2T,h,h,h,A.ni(h,15),h,h))
 r=t.w
 q=a.Z(r).f
 r=a.Z(r).f
@@ -69692,12 +69692,12 @@ n=A.df(new A.dp(B.as,A.e2(A.cz("R\xe9viser TINTIN",h,h,h,A.ni(h,15),h,h),new A.a
 m=$.qV
 m=A.df(new A.dp(B.as,A.e2(A.cz("Test Video",h,h,h,A.ni(h,15),h,h),new A.adz(a),h),h),m===65)
 l=$.qV
-l=A.df(new A.dp(B.as,A.e2(A.cz("Bac T(intin)",h,h,h,A.ni(h,25),h,h),new A.adA(a),h),h),(l&5)===5)
+l=A.df(new A.dp(B.as,A.e2(A.cz("Bac T(intin)",h,h,h,A.ni(h,25),h,h),new A.adA(a),h),h),(l&1)===1)
 k=$.qV
 k=A.df(new A.dp(B.as,A.e2(A.cz("Bac A(sterix)",h,h,h,A.ni(h,25),h,h),new A.adB(a),h),h),k===65)
 j=$.qV
 i=t.p
-return A.r7(s,A.ale(A.c6(h,A.iz(A.a([A.iz(A.a([p,o,n,m,l,k,A.df(new A.dp(B.as,A.e2(A.cz("Bac S(ardou)",h,h,h,A.ni(h,25),h,h),new A.adC(a),h),h),(j&5)===5)],i),B.fA,B.aI,B.G)],i),B.L,B.aI,B.G),h,new A.aM(0,1/0,q.a.b,1/0),B.fh,400,h,h,r.a.a)),h,h)},
+return A.r7(s,A.ale(A.c6(h,A.iz(A.a([A.iz(A.a([p,o,n,m,l,k,A.df(new A.dp(B.as,A.e2(A.cz("Bac S(ardou)",h,h,h,A.ni(h,25),h,h),new A.adC(a),h),h),(j&1)===1)],i),B.fA,B.aI,B.G)],i),B.L,B.aI,B.G),h,new A.aM(0,1/0,q.a.b,1/0),B.fh,400,h,h,r.a.a)),h,h)},
 m(){this.aM()},
 au(){this.aN()
 this.L(new A.adD(this))}}
