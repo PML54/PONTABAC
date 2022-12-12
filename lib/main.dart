@@ -10,6 +10,7 @@ import 'package:pontabac/quizzique.dart';
 import 'package:pontabac/userconnect.dart';
 import 'package:pontabac/usercreate.dart';
 import 'package:pontabac/videosardou.dart';
+import 'package:pontabac/vinyl.dart';
 
 void main() {
   runApp(const MaterialApp(title: 'Navigation Basics', home: MenoPaul()));
@@ -105,7 +106,8 @@ class _MenoPaulState extends State<MenoPaul> {
                   // VideoPlayerApp
 
                   Visibility(
-                    visible: QuizzCommons.myProfile != CERTIFIED_PML &&  QuizzCommons.myProfile != 5,
+                    visible: QuizzCommons.myProfile != CERTIFIED_PML &&
+                        QuizzCommons.myProfile != 5,
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
@@ -207,7 +209,7 @@ class _MenoPaulState extends State<MenoPaul> {
                   ),
                   //--> Sardou
                   Visibility(
-                    visible: QuizzCommons.myProfile & 1  == 1 ,
+                    visible: QuizzCommons.myProfile & 1 == 1,
                     child: Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: ElevatedButton(
@@ -221,6 +223,26 @@ class _MenoPaulState extends State<MenoPaul> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const QuizzZizik()),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: QuizzCommons.myProfile & 65 == 65,
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: ElevatedButton(
+                        child: Text(
+                          'Bac S(ardou) Test',
+                          style: GoogleFonts.averageSans(fontSize: 25.0),
+                        ),
+                        onPressed: () {
+                          QuizzCommons.thatBac = SARDOU;
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Vinyl()),
                           );
                         },
                       ),
