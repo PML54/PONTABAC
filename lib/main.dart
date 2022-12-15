@@ -41,7 +41,7 @@ class _MenoPaulState extends State<MenoPaul> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Bac de LUCHY 1.3 -->' + QuizzCommons.myPseudo,
+          'Bac de Pontoise 1.151' + QuizzCommons.myPseudo,
           style: GoogleFonts.averageSans(fontSize: 15.0),
         ),
       ),
@@ -105,32 +105,12 @@ class _MenoPaulState extends State<MenoPaul> {
                   //--->   'Nouveau Candidat?',
                   // VideoPlayerApp
 
-                  Visibility(
-                    visible: QuizzCommons.myProfile != CERTIFIED_PML &&
-                        QuizzCommons.myProfile != 5,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: ElevatedButton(
-                        child: Text(
-                          'Nouveau Candidat?',
-                          style: GoogleFonts.averageSans(
-                              fontSize: 25.0, color: Colors.black),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const CreatePage()),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
+
                   // --> Reviser       Tinrtin
                   Visibility(
                     visible: QuizzCommons.myProfile == CERTIFIED_PML,
                     child: Padding(
-                      padding: const EdgeInsets.all(2.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
                         child: Text(
                           'Réviser TINTIN',
@@ -245,6 +225,30 @@ class _MenoPaulState extends State<MenoPaul> {
                                 builder: (context) => const Vinyl()),
                           );
                         },
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Visibility(
+                      visible: QuizzCommons.myProfile != CERTIFIED_PML &&
+                          QuizzCommons.myProfile != 5,
+                      child:
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: ElevatedButton(
+                          child: Text(
+                            'Nouveau Candidat?',
+                            style: GoogleFonts.averageSans(
+                                fontSize: 15.0, color: Colors.white),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const CreatePage()),
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ),

@@ -39,7 +39,7 @@ class _VinylState extends State<Vinyl> {
   bool readAlbumsCoversState = false;
   bool readBdSardouState = false;
   bool quizzHit = true;
-
+bool readQuizzSongsState=false;
   bool readGameQuizzScoresState = false;
   bool timeOut = false;
   bool updateGameQuizzBdState = false;
@@ -62,6 +62,7 @@ class _VinylState extends State<Vinyl> {
   int timerQuizz = 0;
   int totalSeconds = 60;
   int newNote = 0;
+
   List<AlbumMz> listAlbumBd = [];
   List<AlbumMz> listAlbumMz = [];
   List<AlbumMz> listAlbumRand = [];
@@ -71,6 +72,8 @@ class _VinylState extends State<Vinyl> {
   List<GameQuizzScores> listGameQuizzScores = [];
   List<PhotoBd> listPhotoBase = [];
   List<PhotoBd> listSardouCase = [];
+  List<QuizzSongs> listQuizzSongs=[];
+  List<QuizzSongs> listQuizzSongsRand=[];
   String reportAnswer = "";
   String reportGoodbd = "";
   String reportInode = "";
@@ -448,7 +451,36 @@ class _VinylState extends State<Vinyl> {
     errorRandom = 1;
     return (errorRandom);
   }
-
+  int getRandomSong() {
+    // <PML>
+    int errorRandom = 0;
+    random = Random().nextInt(listPhotoBase.length);
+// Trop Petit
+// Trop Court
+    if (listPhotoBase[random].photofilesize <  8 ) {
+      errorRandom = 1;
+      return (errorRandom);
+    }
+    if (listPhotoBase[random].photowidth < 1) { // Les Doublons
+      errorRandom = 1;
+      return (errorRandom);
+    }
+    //  Maintenant  Verifions que Random appartient ) la liste
+    for (AlbumMz _album in listAlbumRand) {
+      if (_album.albumid == listPhotoBase[random].photoalbum) {
+        formeImage = listPhotoBase[random].photowidth /
+            listPhotoBase[random].photoheight;
+        int ratioImage = (10 * formeImage).toInt();
+        formeImage = ratioImage / 10;
+// Ici C'est OK il appartient à la lastre
+        thisGameHistoric.thatinode = listPhotoBase[random].photoinode;
+        thisGameHistoric.goodbd = listPhotoBase[random].photoalbum;
+        return (0);
+      }
+    }
+    errorRandom = 1;
+    return (errorRandom);
+  }
   void incForce() {
     if (!quizzOver) return; // Securité
     setState(() {
@@ -463,7 +495,7 @@ class _VinylState extends State<Vinyl> {
     activeQuizz = SARDOU; // SArdou
     readBdSardou();
     readAlbumMz();
-
+    readQuizzSongs();
     recordQuizz = 0;
     quizzOver = true;
     totalSeconds = 60;
@@ -481,6 +513,8 @@ class _VinylState extends State<Vinyl> {
     //   a partie de cer Tome  this.bdFirst,
     // Initialisation  non prend  bdNb  albums depuis bdFirst
     //<PML> <TOIMPROVE>
+
+    // On lit la Config
     int _nbElem = listBD[activeQuizz].bdLast - listBD[activeQuizz].bdFirst + 1;
     int _startAlbum = listBD[activeQuizz].bdFirst; //+1 ??
     var albumRandList = List.generate(_nbElem, (i) => i + _startAlbum);
@@ -506,7 +540,35 @@ class _VinylState extends State<Vinyl> {
       }
     }
   }
+  void majSongRand() {
+ //  Tirer au  Hasard  les Chansons
 
+
+    int _nbElem = listBD[activeQuizz].bdLast - listBD[activeQuizz].bdFirst + 1;
+    int _startAlbum = listBD[activeQuizz].bdFirst; //+1 ??
+    var albumRandList = List.generate(_nbElem, (i) => i + _startAlbum);
+    var albumsList = List.generate(_nbElem, (i) => i + _startAlbum);
+    // Ne prendre les albums dispo
+
+// Liste aleatoire  de n nombres  parmi une liste de départ
+    int p = (forceQuizz - 1) + 1; // de 0 à p-1
+    albumsList.shuffle();
+    albumRandList.clear(); // Numéros
+    albumRandList = albumsList.sublist(0, p);
+    // Historic
+    thisGameHistoric.bdquizz = albumRandList;
+    // On  utilise cette liste pour extraire les Albums
+    //correspondant  de listAlbumBd)
+    listAlbumRand.clear();
+// listAlbumBd   liste des Albums direct MYSQL
+    for (int i = 0; i < p; i++) {
+      for (AlbumMz _album in listAlbumMz) {
+        if (_album.albumid == albumRandList[i]) {
+          listAlbumRand.add(_album);
+        }
+      }
+    }
+  }
   Future readAlbumMz() async {
     Uri url = Uri.parse(pathPHP + "readALBUMSMZ.php");
     readAlbumMzState = false;
@@ -524,6 +586,25 @@ class _VinylState extends State<Vinyl> {
       });
     } else {}
   }
+  Future readQuizzSongs() async {
+    Uri url = Uri.parse(pathPHP + "readQUIZZSONGLIMITED.php");
+    readQuizzSongsState = false;
+    var data = {
+      "BDNAME": "BIDON",
+    };
+
+    http.Response response = await http.post(url, body: data);
+    if (response.statusCode == 200) {
+      var datamysql = jsonDecode(response.body) as List;
+      setState(() {
+        listQuizzSongs =
+            datamysql.map((xJson) => QuizzSongs.fromJson(xJson)).toList();
+        readQuizzSongsState = true;
+        print (" listQuizzSongs="+listQuizzSongs.length.toString());
+      });
+    } else {}
+  }
+
 
   Future readBdSardou() async {
     Uri url = Uri.parse(pathPHP + "readBD.php");

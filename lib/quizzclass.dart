@@ -26,7 +26,13 @@ final listBD = [
     "SARDOU",
     "ALBUMSASTERIX",
     "SARDOUBD",
-
+    26,
+    1,
+  ),
+  ConfigQuizzBd(
+    "BREL",
+    "ALBUMSASTERIX",
+    "BRELBD",
     13,
     1,
   ),
@@ -69,6 +75,28 @@ class AlbumBd {
       albumcaseactive: int.parse(json['ALBUMCASEACTIVE']),
       albuminodeactive: int.parse(json['ALBUMINODEACTIVE']),
       covername: json['COVERNAME'] as String,
+    );
+  }
+}
+//
+//$bdname="QUIZZSONGLIMITED";
+//SONGNAME | varchar(50)  | NO   |     | NULL    |                |
+//| SONGID   | int unsigned | NO   | PRI | NULL    | auto_increment |
+//
+
+class QuizzSongs {
+  int songid = 1;
+  String songname = "xx";
+
+  QuizzSongs({
+    required this.songid,
+    required this.songname,
+  });
+
+  factory QuizzSongs.fromJson(Map<String, dynamic> json) {
+    return QuizzSongs(
+      songid: int.parse(json['SONGID']),
+      songname: json['SONGNAME'] as String,
     );
   }
 }

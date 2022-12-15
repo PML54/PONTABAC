@@ -84,7 +84,7 @@ class _CreatePage extends State<CreatePage> {
           Container(
             margin: const EdgeInsets.only(top: 80),
             child: const Text(
-              "Candidature au Bac S/T de  LUCHY",
+              "Candidature au Bac S/T ",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 40,
@@ -94,7 +94,7 @@ class _CreatePage extends State<CreatePage> {
           Container(
             margin: const EdgeInsets.only(top: 10),
             child: const Text(
-              "Paul validera la demande",
+              "Validation en cours",
               style: TextStyle(color: Colors.white, fontSize: 15),
             ), //subtitle text
           ),
