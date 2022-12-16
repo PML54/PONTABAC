@@ -296,7 +296,7 @@ class _VinylState extends State<Vinyl> {
                 Text(
                   listPhotoBase[random].photouploader,
                   textDirection: TextDirection.ltr,
-                  style: GoogleFonts.pacifico(fontSize: 22),
+                  style: GoogleFonts.pacifico(fontSize: 30),
                 ),
               ],
             ))));
@@ -382,17 +382,16 @@ class _VinylState extends State<Vinyl> {
         controller: ScrollController(),
         itemBuilder: (context, index) {
           return ListTile(
-              dense: true,
-              title: Column(
-                children: [
-                  Text(
-                    listQuizzSongsRand[index].songname,
-                    style: TextStyle(
-                        color: Colors.red,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 22),
-                  ),
-                ],
+              leading: CircleAvatar(
+                backgroundColor: const Color(0xff764abc),
+                child: Text("?"),
+              ),
+              title: Text(
+                listQuizzSongsRand[index].songname,
+                style: TextStyle(
+                    color: Colors.red,
+                    fontStyle: FontStyle.normal,
+                    fontSize: 22),
               ),
               onTap: () {
                 setState(() {
@@ -409,7 +408,6 @@ class _VinylState extends State<Vinyl> {
 
   Row displayNoGame() {
     return (Row(children: <Widget>[
-      //    booldisplayHelp:displayHelp() ?dispQuizzScores(),
       booldisplayHelp ? displayHelp() : dispQuizzScores(),
       //  !booldisplayHelp ? dispQuizzScores() : displayHelp(),
     ]));
@@ -435,7 +433,7 @@ class _VinylState extends State<Vinyl> {
                     "-->  " +
                     listGameQuizzScores[index].gamescore.toString() +
                     " Pts" +
-                    " <Niveau=" +
+                    " <" +
                     listGameQuizzScores[index].gameforce.toString() +
                     ">",
                 style: TextStyle(
