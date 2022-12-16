@@ -4,17 +4,15 @@ import 'dart:core';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:pontabac/configquizz.dart';
 import 'package:pontabac/quizzclass.dart';
 import 'package:pontabac/quizzcommons.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 // Quizz orienté Album 33 T
 // Ce sont pas des  cases dse pagers d'albums mais des  vers de chansons de BD
-
 //ALBUMSARDOU
-
 //GAMEQUIZZBD
 //SARDOUBD
 
@@ -39,7 +37,7 @@ class _VinylState extends State<Vinyl> {
   bool readAlbumsCoversState = false;
   bool readBdSardouState = false;
   bool quizzHit = true;
-bool readQuizzSongsState=false;
+  bool readQuizzSongsState = false;
   bool readGameQuizzScoresState = false;
   bool timeOut = false;
   bool updateGameQuizzBdState = false;
@@ -56,7 +54,7 @@ bool readQuizzSongsState=false;
   int nbGood = 0;
   int nbQuizz = 0;
   int random = 1;
-  int recordQuizz = 0;
+
   int thisGameId = 0;
   int timeQuizzInitial = 60;
   int timerQuizz = 0;
@@ -72,8 +70,8 @@ bool readQuizzSongsState=false;
   List<GameQuizzScores> listGameQuizzScores = [];
   List<PhotoBd> listPhotoBase = [];
   List<PhotoBd> listSardouCase = [];
-  List<QuizzSongs> listQuizzSongs=[];
-  List<QuizzSongs> listQuizzSongsRand=[];
+  List<QuizzSongs> listQuizzSongs = [];
+  List<QuizzSongs> listQuizzSongsRand = [];
   String reportAnswer = "";
   String reportGoodbd = "";
   String reportInode = "";
@@ -98,92 +96,92 @@ bool readQuizzSongsState=false;
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-          appBar: AppBar(actions: [
-            Expanded(
-              child: Row(
-                children: [
-                  Visibility(
-                      visible: quizzOver,
-                      child: IconButton(
-                        icon: const Icon(Icons.close),
-                        iconSize: 20,
-                        color: Colors.red,
-                        tooltip: 'Quitter',
-                        onPressed: () => {Navigator.pop(context)},
-                      )),
-                  Visibility(
-                    visible: quizzOver,
-                    child: ElevatedButton(
-                      onPressed: () => {startQuizz()},
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 2, vertical: 2),
-                          textStyle: const TextStyle(
-                              fontSize: 20,
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold)),
-                      child: Text(startButton),
-                    ),
-                  ),
-                  Visibility(
-                    visible: chronoStart && totalSeconds < 9900 && !quizzOver,
-                    child: Text(totalSeconds.toString() + 's',
-                        style: TextStyle(
-                            color: (totalSeconds < 10) ? Colors.red : Colors.white,
-                            fontSize: 20)),
-                  ),
-                  Visibility(
-                    visible: !quizzOver,
-                    child: ElevatedButton(
-                      onPressed: () => {},
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 2, vertical: 2),
-                          textStyle: const TextStyle(
-                              fontSize: 25,
-                              color: Colors.red,
-                              backgroundColor: Colors.blue,
-                              fontWeight: FontWeight.bold)),
-                      child: Text("             " + newNote.toString() + " Points"),
-                    ),
-                  ),
-                  Visibility(
-                      visible: quizzOver,
-                      child: IconButton(
-                          icon: const Icon(Icons.tv),
-                          iconSize: 30,
-                          color: Colors.greenAccent,
-                          tooltip: 'Les Mentions',
-                          onPressed: () {
-                            setState(() {
-                              boolScore = !boolScore;
-                              booldisplayHelp = !boolScore;
-                            });
-                          })),
-                  Visibility(
-                    visible: quizzOver,
-                    child: ElevatedButton(
-                      onPressed: () => {incForce()},
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 2, vertical: 2),
-                          textStyle: const TextStyle(
-                              fontSize: 15,
-                              color: Colors.red,
-                              backgroundColor: Colors.green,
-                              fontWeight: FontWeight.bold)),
-                      child: Text("Force=" + forceQuizz.toString()),
-                    ),
-                  ),
-                ],
+      appBar: AppBar(actions: [
+        Expanded(
+          child: Row(
+            children: [
+              Visibility(
+                  visible: quizzOver,
+                  child: IconButton(
+                    icon: const Icon(Icons.close),
+                    iconSize: 20,
+                    color: Colors.red,
+                    tooltip: 'Quitter',
+                    onPressed: () => {Navigator.pop(context)},
+                  )),
+              Visibility(
+                visible: quizzOver,
+                child: ElevatedButton(
+                  onPressed: () => {startQuizz()},
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 2, vertical: 2),
+                      textStyle: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold)),
+                  child: Text(startButton),
+                ),
               ),
-            ),
-          ]),
-          body: !quizzOver ? displayGame() : displayNoGame(),
-        ));
+              Visibility(
+                visible: chronoStart && totalSeconds < 9900 && !quizzOver,
+                child: Text(totalSeconds.toString() + 's',
+                    style: TextStyle(
+                        color: (totalSeconds < 10) ? Colors.red : Colors.white,
+                        fontSize: 20)),
+              ),
+              Visibility(
+                visible: !quizzOver,
+                child: ElevatedButton(
+                  onPressed: () => {},
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 2, vertical: 2),
+                      textStyle: const TextStyle(
+                          fontSize: 25,
+                          color: Colors.red,
+                          backgroundColor: Colors.blue,
+                          fontWeight: FontWeight.bold)),
+                  child: Text("             " + newNote.toString() + " Points"),
+                ),
+              ),
+              Visibility(
+                  visible: quizzOver,
+                  child: IconButton(
+                      icon: const Icon(Icons.tv),
+                      iconSize: 30,
+                      color: Colors.greenAccent,
+                      tooltip: 'Les Mentions',
+                      onPressed: () {
+                        setState(() {
+                          boolScore = !boolScore;
+                          booldisplayHelp = !boolScore;
+                        });
+                      })),
+              Visibility(
+                visible: quizzOver,
+                child: ElevatedButton(
+                  onPressed: () => {incForce()},
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 2, vertical: 2),
+                      textStyle: const TextStyle(
+                          fontSize: 15,
+                          color: Colors.red,
+                          backgroundColor: Colors.green,
+                          fontWeight: FontWeight.bold)),
+                  child: Text("Force=" + forceQuizz.toString()),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ]),
+      body: !quizzOver ? displayGame() : displayNoGame(),
+    ));
   }
 
   buildTime() {
@@ -210,7 +208,7 @@ bool readQuizzSongsState=false;
 
   void checkQuizz(indexalbum) {
     if (quizzOver) return;
-    int successQuizz = (forceQuizz - 1) + 2;
+
     setState(() {
       nbQuizz++;
       // Update Historic
@@ -222,19 +220,19 @@ bool readQuizzSongsState=false;
 
       //
       thisGameHistoric = GameHistoric(8, 1, 2, []);
-
-      if ((indexalbum) == listPhotoBase[random].photoalbum) {
+      if ((indexalbum) == listPhotoBase[random].photophl) {
+        // if ((indexalbum) == listPhotoBase[random].photoalbum) {
         nbGood++;
-        recordQuizz = recordQuizz + successQuizz;
+
         newNote = newNote + (forceQuizz - 1);
       } else {
         newNote = newNote - 1;
-
-        recordQuizz = recordQuizz - 1;
       }
-      majAlbumRand(); //
-
-      while ((getRandomPlus()) == 1) {}
+      print("in checkQuizz=" + indexalbum.toString());
+      //majAlbumRand(); //
+      majSongRand(); //
+      // while ((getRandomPlus()) == 1) {}
+      while ((getRandomSong()) == 1) {}
     });
   }
 
@@ -264,9 +262,10 @@ bool readQuizzSongsState=false;
             datamysql.map((xJson) => GameQuizz.fromJson(xJson)).toList();
         thisGameId = listMyGames[0].gameid;
       });
-
-      majAlbumRand(); // Set d'albums New
-      while ((getRandomPlus()) == 1) {}
+      majSongRand(); //
+      //  majAlbumRand(); // Set d'albums New
+      // while ((getRandomPlus()) == 1) {} <PML>
+      while ((getRandomSong()) == 1) {}
     }
   }
 
@@ -284,11 +283,11 @@ bool readQuizzSongsState=false;
     return Expanded(
         child: (GestureDetector(
             onTap: () => {
-              setState(() {
-                //<PML> pas de zoom  pour du text
-                //  boolZoom = !boolZoom;
-              })
-            },
+                  setState(() {
+                    //<PML> pas de zoom  pour du text
+                    //  boolZoom = !boolZoom;
+                  })
+                },
             child: Stack(
               children: <Widget>[
                 // Stroked text as border.
@@ -307,7 +306,7 @@ bool readQuizzSongsState=false;
     return (Row(children: <Widget>[
       Align(child: buildTime()),
       displayCase(),
-      displayListAlbumRand(),
+      displayListQuizzSongsRand(),
     ]));
   }
 
@@ -325,7 +324,7 @@ bool readQuizzSongsState=false;
     ]);
   }
 
-  Widget displayListAlbumRand() {
+  /* Widget displayListAlbumRand() {
     // On N'affiche pas si
     if (!readAlbumMzState || listAlbumRand.isEmpty) {
       return (dispQuizzScores());
@@ -360,7 +359,46 @@ bool readQuizzSongsState=false;
                 setState(() {
                   if (!quizzOver && !quizzHit) {
                     quizzHit = true;
-                    int indexOrigine = listAlbumRand[index].albumid;
+                    int indexOrigine = listQuizzSongs[index].songid;
+                    checkQuizz(indexOrigine);
+                  }
+                });
+              });
+        });
+    return Visibility(visible: boolZoom, child: (Expanded(child: listView)));
+  }*/
+
+  Widget displayListQuizzSongsRand() {
+    // On N'affiche pas si
+    if (!readQuizzSongsState || listQuizzSongsRand.isEmpty) {
+      return (dispQuizzScores());
+    }
+    if (quizzOver && boolScore) {
+      return (dispQuizzScores());
+    }
+
+    var listView = ListView.builder(
+        itemCount: listQuizzSongsRand.length,
+        controller: ScrollController(),
+        itemBuilder: (context, index) {
+          return ListTile(
+              dense: true,
+              title: Column(
+                children: [
+                  Text(
+                    listQuizzSongsRand[index].songname,
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontStyle: FontStyle.normal,
+                        fontSize: 22),
+                  ),
+                ],
+              ),
+              onTap: () {
+                setState(() {
+                  if (!quizzOver && !quizzHit) {
+                    quizzHit = true;
+                    int indexOrigine = listQuizzSongsRand[index].songid;
                     checkQuizz(indexOrigine);
                   }
                 });
@@ -381,6 +419,8 @@ bool readQuizzSongsState=false;
     if (!readGameQuizzScoresState || !boolScore) {
       return (const Expanded(child: Text(" ")));
     }
+    print(
+        " listGameQuizzScores.length" + listGameQuizzScores.length.toString());
     var listView = ListView.builder(
         itemCount: listGameQuizzScores.length,
         controller: ScrollController(),
@@ -404,16 +444,6 @@ bool readQuizzSongsState=false;
                     fontStyle: FontStyle.normal,
                     fontSize: 15),
               ),
-              /*   subtitle: Text(
-                " <" +
-                    listGameQuizzScores[index].gamenbgood.toString() +
-                    "/" +
-                    listGameQuizzScores[index].gamenbquest.toString() +
-                    "> " "Coeff=" +
-                    listGameQuizzScores[index].gameforce.toString(),
-                style: TextStyle(
-                    fontSize: 10, fontFamily: 'Serif', color: Colors.black),
-              ),*/
               onTap: () {
                 setState(() {});
               });
@@ -421,17 +451,17 @@ bool readQuizzSongsState=false;
     return (Expanded(child: listView));
   }
 
-  int getRandomPlus() {
+  /*int getRandomPlus() {
     // <PML>
     int errorRandom = 0;
     random = Random().nextInt(listPhotoBase.length);
 // Trop Petit
-// Trop Court
-    if (listPhotoBase[random].photofilesize <  8 ) {
+    if (listPhotoBase[random].photofilesize < 8) {
       errorRandom = 1;
       return (errorRandom);
     }
-    if (listPhotoBase[random].photowidth < 1) { // Les Doublons
+    if (listPhotoBase[random].photowidth < 1) {
+      // Les Doublons
       errorRandom = 1;
       return (errorRandom);
     }
@@ -450,28 +480,29 @@ bool readQuizzSongsState=false;
     }
     errorRandom = 1;
     return (errorRandom);
-  }
+  }*/
+
   int getRandomSong() {
     // <PML>
     int errorRandom = 0;
     random = Random().nextInt(listPhotoBase.length);
-// Trop Petit
 // Trop Court
-    if (listPhotoBase[random].photofilesize <  8 ) {
+    // Photofilesirze = Lonhueur
+    if (listPhotoBase[random].photofilesize < 8) {
       errorRandom = 1;
       return (errorRandom);
     }
-    if (listPhotoBase[random].photowidth < 1) { // Les Doublons
+    if (listPhotoBase[random].photowidth < 1) {
+      // Les Doublons
       errorRandom = 1;
       return (errorRandom);
     }
     //  Maintenant  Verifions que Random appartient ) la liste
-    for (AlbumMz _album in listAlbumRand) {
-      if (_album.albumid == listPhotoBase[random].photoalbum) {
-        formeImage = listPhotoBase[random].photowidth /
-            listPhotoBase[random].photoheight;
-        int ratioImage = (10 * formeImage).toInt();
-        formeImage = ratioImage / 10;
+    //  Dans le principe   On regarde si la bonne réponse
+    // fait partie de la selection aleatoire
+
+    for (QuizzSongs _album in listQuizzSongsRand) {
+      if (_album.songid == listPhotoBase[random].photophl) {
 // Ici C'est OK il appartient à la lastre
         thisGameHistoric.thatinode = listPhotoBase[random].photoinode;
         thisGameHistoric.goodbd = listPhotoBase[random].photoalbum;
@@ -481,6 +512,7 @@ bool readQuizzSongsState=false;
     errorRandom = 1;
     return (errorRandom);
   }
+
   void incForce() {
     if (!quizzOver) return; // Securité
     setState(() {
@@ -496,7 +528,7 @@ bool readQuizzSongsState=false;
     readBdSardou();
     readAlbumMz();
     readQuizzSongs();
-    recordQuizz = 0;
+
     quizzOver = true;
     totalSeconds = 60;
     nbQuizz = 0;
@@ -508,6 +540,7 @@ bool readQuizzSongsState=false;
 
   double log10(num x) => log(x) / ln10;
 
+/**/
   void majAlbumRand() {
     //this.bdNb, 22 albums
     //   a partie de cer Tome  this.bdFirst,
@@ -518,14 +551,14 @@ bool readQuizzSongsState=false;
     int _nbElem = listBD[activeQuizz].bdLast - listBD[activeQuizz].bdFirst + 1;
     int _startAlbum = listBD[activeQuizz].bdFirst; //+1 ??
     var albumRandList = List.generate(_nbElem, (i) => i + _startAlbum);
-    var albumsList = List.generate(_nbElem, (i) => i + _startAlbum);
+    var listObjects = List.generate(_nbElem, (i) => i + _startAlbum);
     // Ne prendre les albums dispo
 
 // Liste aleatoire  de n nombres  parmi une liste de départ
     int p = (forceQuizz - 1) + 1; // de 0 à p-1
-    albumsList.shuffle();
+    listObjects.shuffle();
     albumRandList.clear(); // Numéros
-    albumRandList = albumsList.sublist(0, p);
+    albumRandList = listObjects.sublist(0, p);
     // Historic
     thisGameHistoric.bdquizz = albumRandList;
     // On  utilise cette liste pour extraire les Albums
@@ -540,35 +573,38 @@ bool readQuizzSongsState=false;
       }
     }
   }
+
   void majSongRand() {
- //  Tirer au  Hasard  les Chansons
-
-
+    //  Tirer au  Hasard  les Chansons
+//
     int _nbElem = listBD[activeQuizz].bdLast - listBD[activeQuizz].bdFirst + 1;
     int _startAlbum = listBD[activeQuizz].bdFirst; //+1 ??
-    var albumRandList = List.generate(_nbElem, (i) => i + _startAlbum);
-    var albumsList = List.generate(_nbElem, (i) => i + _startAlbum);
-    // Ne prendre les albums dispo
+    // Pour les chansons
+    _nbElem = listQuizzSongs.length;
+    var randListObjects = List.generate(_nbElem, (i) => i + _startAlbum);
+    var listObjects = List.generate(_nbElem, (i) => i + _startAlbum);
 
 // Liste aleatoire  de n nombres  parmi une liste de départ
-    int p = (forceQuizz - 1) + 1; // de 0 à p-1
-    albumsList.shuffle();
-    albumRandList.clear(); // Numéros
-    albumRandList = albumsList.sublist(0, p);
+    int p = forceQuizz; // de 0 à p-1
+    listObjects.shuffle();
+    randListObjects.clear(); // Numéros
+    randListObjects = listObjects.sublist(0, p);
     // Historic
-    thisGameHistoric.bdquizz = albumRandList;
-    // On  utilise cette liste pour extraire les Albums
-    //correspondant  de listAlbumBd)
-    listAlbumRand.clear();
+    thisGameHistoric.bdquizz = randListObjects;
+    // On  utilise cette liste pour extraire les
+
+    listQuizzSongsRand.clear();
 // listAlbumBd   liste des Albums direct MYSQL
     for (int i = 0; i < p; i++) {
-      for (AlbumMz _album in listAlbumMz) {
-        if (_album.albumid == albumRandList[i]) {
-          listAlbumRand.add(_album);
+      for (QuizzSongs _album in listQuizzSongs) {
+        if (_album.songid == randListObjects[i]) {
+          listQuizzSongsRand.add(_album);
         }
       }
     }
+    print("listQuizzSongsRand" + listQuizzSongsRand.length.toString());
   }
+
   Future readAlbumMz() async {
     Uri url = Uri.parse(pathPHP + "readALBUMSMZ.php");
     readAlbumMzState = false;
@@ -586,25 +622,6 @@ bool readQuizzSongsState=false;
       });
     } else {}
   }
-  Future readQuizzSongs() async {
-    Uri url = Uri.parse(pathPHP + "readQUIZZSONGLIMITED.php");
-    readQuizzSongsState = false;
-    var data = {
-      "BDNAME": "BIDON",
-    };
-
-    http.Response response = await http.post(url, body: data);
-    if (response.statusCode == 200) {
-      var datamysql = jsonDecode(response.body) as List;
-      setState(() {
-        listQuizzSongs =
-            datamysql.map((xJson) => QuizzSongs.fromJson(xJson)).toList();
-        readQuizzSongsState = true;
-        print (" listQuizzSongs="+listQuizzSongs.length.toString());
-      });
-    } else {}
-  }
-
 
   Future readBdSardou() async {
     Uri url = Uri.parse(pathPHP + "readBD.php");
@@ -638,6 +655,25 @@ bool readQuizzSongsState=false;
             datamysql.map((xJson) => GameQuizzScores.fromJson(xJson)).toList();
         readGameQuizzScoresState = true;
         listGameQuizzScores.sort((a, b) => b.gamescore.compareTo(a.gamescore));
+      });
+    } else {}
+  }
+
+  Future readQuizzSongs() async {
+    Uri url = Uri.parse(pathPHP + "readQUIZZSONGLIMITED.php");
+    readQuizzSongsState = false;
+    var data = {
+      "BDNAME": "BIDON",
+    };
+
+    http.Response response = await http.post(url, body: data);
+    if (response.statusCode == 200) {
+      var datamysql = jsonDecode(response.body) as List;
+      setState(() {
+        listQuizzSongs =
+            datamysql.map((xJson) => QuizzSongs.fromJson(xJson)).toList();
+        readQuizzSongsState = true;
+        print(" listQuizzSongs=" + listQuizzSongs.length.toString());
       });
     } else {}
   }
@@ -690,9 +726,8 @@ bool readQuizzSongsState=false;
         _scoreQuizz = _scoreQuizz + log10(consList[j]) + j * log10(forceQuizz);
       }
     }
-    //        int ratioImage = (10 * formeImage).toInt();
+
     gameNote = nbGood * (forceQuizz - 1);
-    recordQuizz = (_scoreQuizz * 100).toInt();
   }
 
   void reset() {
@@ -706,17 +741,12 @@ bool readQuizzSongsState=false;
 
   void setThema(int _thatBd) {
     activeQuizz = _thatBd; //    <tintin=1>
-
-    //   readAlbumsCovers();
-    // readBd();
     listPhotoBase.clear;
     listAlbumBd.clear;
     if (_thatBd == SARDOU) {
       listPhotoBase = listSardouCase;
-      // listAlbumBd = listAlbumMz;//<PML>
     }
 
-    recordQuizz = 0;
     quizzOver = true; //  On ne paut modifier en coirs de Game
     totalSeconds = 60;
     nbQuizz = 0;

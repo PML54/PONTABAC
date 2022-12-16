@@ -24,7 +24,7 @@ class _CreatePage extends State<CreatePage> {
   String datecreate = "";
   final _username = TextEditingController();
   final _password = TextEditingController();
-  final _email = TextEditingController();
+
   List<MemopolUsers> listMemopolUsers = [];
 
   int getMemopolUserError = -1;
