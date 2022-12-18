@@ -33,8 +33,7 @@ class _VinylState extends State<Vinyl> {
   bool countDown = true;
   bool createGameQuizzBdState = false;
   bool quizzOver = true;
-  bool readAlbumMzState = false;
-  bool readAlbumsCoversState = false;
+
   bool readBdSardouState = false;
   bool quizzHit = true;
   bool readQuizzSongsState = false;
@@ -43,7 +42,6 @@ class _VinylState extends State<Vinyl> {
   bool updateGameQuizzBdState = false;
   Color colorCounter = Colors.green;
 
-  double formeImage = 0.0;
   Duration countdownDuration = const Duration(seconds: 10000);
   Duration duration = const Duration();
 
@@ -61,9 +59,6 @@ class _VinylState extends State<Vinyl> {
   int totalSeconds = 60;
   int newNote = 0;
 
-  List<AlbumMz> listAlbumBd = [];
-  List<AlbumMz> listAlbumMz = [];
-  List<AlbumMz> listAlbumRand = [];
   GameHistoric thisGameHistoric = GameHistoric(8, 1, 2, []);
   List<GameHistoric> listGameHistoric = [];
   List<GameQuizz> listMyGames = [];
@@ -72,6 +67,7 @@ class _VinylState extends State<Vinyl> {
   List<PhotoBd> listSardouCase = [];
   List<QuizzSongs> listQuizzSongs = [];
   List<QuizzSongs> listQuizzSongsRand = [];
+  List<bool> listQuizzSongsRandBool = [];
   String reportAnswer = "";
   String reportGoodbd = "";
   String reportInode = "";
@@ -153,7 +149,20 @@ class _VinylState extends State<Vinyl> {
                       icon: const Icon(Icons.tv),
                       iconSize: 30,
                       color: Colors.greenAccent,
-                      tooltip: 'Les Mentions',
+                      tooltip: 'Classement',
+                      onPressed: () {
+                        setState(() {
+                          boolScore = !boolScore;
+                          booldisplayHelp = !boolScore;
+                        });
+                      })),
+              Visibility(
+                  visible: quizzOver,
+                  child: IconButton(
+                      icon: const Icon(Icons.help),
+                      iconSize: 30,
+                      color: Colors.greenAccent,
+                      tooltip: 'Help',
                       onPressed: () {
                         setState(() {
                           boolScore = !boolScore;
@@ -173,7 +182,7 @@ class _VinylState extends State<Vinyl> {
                           color: Colors.red,
                           backgroundColor: Colors.green,
                           fontWeight: FontWeight.bold)),
-                  child: Text("Force=" + forceQuizz.toString()),
+                  child: Text("Niveau=" + forceQuizz.toString()),
                 ),
               ),
             ],
@@ -206,13 +215,12 @@ class _VinylState extends State<Vinyl> {
     }
   }
 
-  void checkQuizz(indexalbum) {
+  void checkQuizz(indexalbum, indexobjet) {
     if (quizzOver) return;
-
+    print("in checkQuizz N°1 =" + indexalbum.toString());
     setState(() {
       nbQuizz++;
       // Update Historic
-
       thisGameHistoric.thatinode = listPhotoBase[random].photoinode;
       thisGameHistoric.goodbd = listPhotoBase[random].photoalbum;
       thisGameHistoric.bdreponse = indexalbum;
@@ -221,28 +229,32 @@ class _VinylState extends State<Vinyl> {
       //
       thisGameHistoric = GameHistoric(8, 1, 2, []);
       if ((indexalbum) == listPhotoBase[random].photophl) {
-        // if ((indexalbum) == listPhotoBase[random].photoalbum) {
         nbGood++;
-
+        listQuizzSongsRandBool[indexobjet] = true;
         newNote = newNote + (forceQuizz - 1);
       } else {
         newNote = newNote - 1;
+        listQuizzSongsRandBool[indexobjet] = false;
       }
-      print("in checkQuizz=" + indexalbum.toString());
-      //majAlbumRand(); //
+      print("in checkQuizz N°2 =" + indexalbum.toString());
+
       majSongRand(); //
-      // while ((getRandomPlus()) == 1) {}
+
       while ((getRandomSong()) == 1) {}
     });
   }
 
   Future createGameQuizzBd() async {
     createGameQuizzBdState = false;
-
+print ("QuizzCommons.thatBac"+QuizzCommons.thatBac.toString());
     Uri url = Uri.parse(pathPHP + "createGAMEQUIZZBD.php");
 
+    var _codeGame="SARDOU";
+
+    if  (QuizzCommons.thatBac==4)  _codeGame="SARDOUT";
     var data = {
-      "THATBD": listBD[activeQuizz].bdThis,
+    //  "THATBD": listBD[activeQuizz].bdThis,
+      "THATBD": _codeGame,
       "GAMER": QuizzCommons.myPseudo,
       "GAMERID": QuizzCommons.myUid.toString(),
       "GAMEFORCE": forceQuizz.toString(),
@@ -262,9 +274,11 @@ class _VinylState extends State<Vinyl> {
             datamysql.map((xJson) => GameQuizz.fromJson(xJson)).toList();
         thisGameId = listMyGames[0].gameid;
       });
+
+      booldisplayHelp = false;
+      booldisplayListAlbumRand = true;
+      boolScore = false;
       majSongRand(); //
-      //  majAlbumRand(); // Set d'albums New
-      // while ((getRandomPlus()) == 1) {} <PML>
       while ((getRandomSong()) == 1) {}
     }
   }
@@ -281,25 +295,20 @@ class _VinylState extends State<Vinyl> {
       );
     }
     return Expanded(
-        child: (GestureDetector(
+        child: GestureDetector(
             onTap: () => {
                   setState(() {
                     //<PML> pas de zoom  pour du text
                     //  boolZoom = !boolZoom;
                   })
                 },
-            child: Stack(
-              children: <Widget>[
-                // Stroked text as border.
-
-                // Solid text as fill.
-                Text(
+            child: Container(
+                alignment: Alignment.topLeft,
+                child: Text(
                   listPhotoBase[random].photouploader,
                   textDirection: TextDirection.ltr,
                   style: GoogleFonts.pacifico(fontSize: 30),
-                ),
-              ],
-            ))));
+                ))));
   }
 
   Row displayGame() {
@@ -316,64 +325,19 @@ class _VinylState extends State<Vinyl> {
         visible: booldisplayHelp,
         child: Image.network(
           "upload/helpsardou.png",
-          /*
-             width: 800,
-             height: 1000,*/
         ),
       ),
     ]);
   }
 
-  /* Widget displayListAlbumRand() {
-    // On N'affiche pas si
-    if (!readAlbumMzState || listAlbumRand.isEmpty) {
-      return (dispQuizzScores());
-    }
-    if (quizzOver && boolScore) {
-      return (dispQuizzScores());
-    }
-
-    var listView = ListView.builder(
-        itemCount: listAlbumRand.length,
-        controller: ScrollController(),
-        itemBuilder: (context, index) {
-          return ListTile(
-              dense: true,
-              title: Column(
-                children: [
-                  Image.network(
-                    "upload/" + listAlbumRand[index].albumcode + ".jpg",
-                    width: forceQuizz >= 4 ? 128 : 192,
-                    height: forceQuizz >= 4 ? 128 : 192,
-                  ),
-                  Text(
-                    listAlbumRand[index].albumname,
-                    style: TextStyle(
-                        color: Colors.red,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 12),
-                  ),
-                ],
-              ),
-              onTap: () {
-                setState(() {
-                  if (!quizzOver && !quizzHit) {
-                    quizzHit = true;
-                    int indexOrigine = listQuizzSongs[index].songid;
-                    checkQuizz(indexOrigine);
-                  }
-                });
-              });
-        });
-    return Visibility(visible: boolZoom, child: (Expanded(child: listView)));
-  }*/
-
   Widget displayListQuizzSongsRand() {
-    // On N'affiche pas si
     if (!readQuizzSongsState || listQuizzSongsRand.isEmpty) {
+      print(" Not Radis  yet");
+
       return (dispQuizzScores());
     }
     if (quizzOver && boolScore) {
+      //    print (" quizzOver && boolScore");
       return (dispQuizzScores());
     }
 
@@ -383,7 +347,10 @@ class _VinylState extends State<Vinyl> {
         itemBuilder: (context, index) {
           return ListTile(
               leading: CircleAvatar(
-                backgroundColor: const Color(0xff764abc),
+                radius: 10.0,
+                backgroundColor: listQuizzSongsRandBool[index]
+                    ? Color(0xff764abc)
+                    : Colors.green,
                 child: Text("?"),
               ),
               title: Text(
@@ -398,7 +365,7 @@ class _VinylState extends State<Vinyl> {
                   if (!quizzOver && !quizzHit) {
                     quizzHit = true;
                     int indexOrigine = listQuizzSongsRand[index].songid;
-                    checkQuizz(indexOrigine);
+                    checkQuizz(indexOrigine, index);
                   }
                 });
               });
@@ -409,16 +376,14 @@ class _VinylState extends State<Vinyl> {
   Row displayNoGame() {
     return (Row(children: <Widget>[
       booldisplayHelp ? displayHelp() : dispQuizzScores(),
-      //  !booldisplayHelp ? dispQuizzScores() : displayHelp(),
     ]));
   }
 
   Expanded dispQuizzScores() {
     if (!readGameQuizzScoresState || !boolScore) {
-      return (const Expanded(child: Text(" ")));
+      return (const Expanded(child: Text(" Not Ready ")));
     }
-    print(
-        " listGameQuizzScores.length" + listGameQuizzScores.length.toString());
+
     var listView = ListView.builder(
         itemCount: listGameQuizzScores.length,
         controller: ScrollController(),
@@ -449,43 +414,15 @@ class _VinylState extends State<Vinyl> {
     return (Expanded(child: listView));
   }
 
-  /*int getRandomPlus() {
-    // <PML>
-    int errorRandom = 0;
-    random = Random().nextInt(listPhotoBase.length);
-// Trop Petit
-    if (listPhotoBase[random].photofilesize < 8) {
-      errorRandom = 1;
-      return (errorRandom);
-    }
-    if (listPhotoBase[random].photowidth < 1) {
-      // Les Doublons
-      errorRandom = 1;
-      return (errorRandom);
-    }
-    //  Maintenant  Verifions que Random appartient ) la liste
-    for (AlbumMz _album in listAlbumRand) {
-      if (_album.albumid == listPhotoBase[random].photoalbum) {
-        formeImage = listPhotoBase[random].photowidth /
-            listPhotoBase[random].photoheight;
-        int ratioImage = (10 * formeImage).toInt();
-        formeImage = ratioImage / 10;
-// Ici C'est OK il appartient à la lastre
-        thisGameHistoric.thatinode = listPhotoBase[random].photoinode;
-        thisGameHistoric.goodbd = listPhotoBase[random].photoalbum;
-        return (0);
-      }
-    }
-    errorRandom = 1;
-    return (errorRandom);
-  }*/
-
   int getRandomSong() {
     // <PML>
     int errorRandom = 0;
-    random = Random().nextInt(listPhotoBase.length);
+    setState(() {
+      random = Random().nextInt(listPhotoBase.length);
+    });
+
 // Trop Court
-    // Photofilesirze = Lonhueur
+
     if (listPhotoBase[random].photofilesize < 8) {
       errorRandom = 1;
       return (errorRandom);
@@ -502,6 +439,7 @@ class _VinylState extends State<Vinyl> {
     for (QuizzSongs _album in listQuizzSongsRand) {
       if (_album.songid == listPhotoBase[random].photophl) {
 // Ici C'est OK il appartient à la lastre
+        print("On a trouvé");
         thisGameHistoric.thatinode = listPhotoBase[random].photoinode;
         thisGameHistoric.goodbd = listPhotoBase[random].photoalbum;
         return (0);
@@ -524,7 +462,6 @@ class _VinylState extends State<Vinyl> {
     super.initState();
     activeQuizz = SARDOU; // SArdou
     readBdSardou();
-    readAlbumMz();
     readQuizzSongs();
 
     quizzOver = true;
@@ -534,42 +471,6 @@ class _VinylState extends State<Vinyl> {
     thisGameId = 0;
 
     readGameQuizzScores();
-  }
-
-  double log10(num x) => log(x) / ln10;
-
-/**/
-  void majAlbumRand() {
-    //this.bdNb, 22 albums
-    //   a partie de cer Tome  this.bdFirst,
-    // Initialisation  non prend  bdNb  albums depuis bdFirst
-    //<PML> <TOIMPROVE>
-
-    // On lit la Config
-    int _nbElem = listBD[activeQuizz].bdLast - listBD[activeQuizz].bdFirst + 1;
-    int _startAlbum = listBD[activeQuizz].bdFirst; //+1 ??
-    var albumRandList = List.generate(_nbElem, (i) => i + _startAlbum);
-    var listObjects = List.generate(_nbElem, (i) => i + _startAlbum);
-    // Ne prendre les albums dispo
-
-// Liste aleatoire  de n nombres  parmi une liste de départ
-    int p = (forceQuizz - 1) + 1; // de 0 à p-1
-    listObjects.shuffle();
-    albumRandList.clear(); // Numéros
-    albumRandList = listObjects.sublist(0, p);
-    // Historic
-    thisGameHistoric.bdquizz = albumRandList;
-    // On  utilise cette liste pour extraire les Albums
-    //correspondant  de listAlbumBd)
-    listAlbumRand.clear();
-// listAlbumBd   liste des Albums direct MYSQL
-    for (int i = 0; i < p; i++) {
-      for (AlbumMz _album in listAlbumMz) {
-        if (_album.albumid == albumRandList[i]) {
-          listAlbumRand.add(_album);
-        }
-      }
-    }
   }
 
   void majSongRand() {
@@ -592,7 +493,12 @@ class _VinylState extends State<Vinyl> {
     // On  utilise cette liste pour extraire les
 
     listQuizzSongsRand.clear();
-// listAlbumBd   liste des Albums direct MYSQL
+    listQuizzSongsRandBool.clear();
+    for (int j = 0; j < p; j++) {
+      listQuizzSongsRandBool.add(false);
+    }
+
+    print("randListObjects = " + randListObjects.length.toString());
     for (int i = 0; i < p; i++) {
       for (QuizzSongs _album in listQuizzSongs) {
         if (_album.songid == randListObjects[i]) {
@@ -600,25 +506,7 @@ class _VinylState extends State<Vinyl> {
         }
       }
     }
-    print("listQuizzSongsRand" + listQuizzSongsRand.length.toString());
-  }
-
-  Future readAlbumMz() async {
-    Uri url = Uri.parse(pathPHP + "readALBUMSMZ.php");
-    readAlbumMzState = false;
-    var data = {
-      "BDNAME": "ALBUMSARDOU",
-    };
-
-    http.Response response = await http.post(url, body: data);
-    if (response.statusCode == 200) {
-      var datamysql = jsonDecode(response.body) as List;
-      setState(() {
-        listAlbumMz =
-            datamysql.map((xJson) => AlbumMz.fromJson(xJson)).toList();
-        readAlbumMzState = true;
-      });
-    } else {}
+    print("listQuizzSongsRand ----> " + listQuizzSongsRand.length.toString());
   }
 
   Future readBdSardou() async {
@@ -644,7 +532,12 @@ class _VinylState extends State<Vinyl> {
   Future readGameQuizzScores() async {
     Uri url = Uri.parse(pathPHP + "readGAMEQUIZZSCORES.php");
     readGameQuizzScoresState = false;
-    var data = {"THATBD": "SARDOU"};
+
+    var _codeGame="SARDOU";
+
+    if  (QuizzCommons.thatBac==4)  _codeGame="SARDOUT";
+
+    var data = {"THATBD":  _codeGame};
     http.Response response = await http.post(url, body: data);
     if (response.statusCode == 200) {
       var datamysql = jsonDecode(response.body) as List;
@@ -652,6 +545,7 @@ class _VinylState extends State<Vinyl> {
         listGameQuizzScores =
             datamysql.map((xJson) => GameQuizzScores.fromJson(xJson)).toList();
         readGameQuizzScoresState = true;
+
         listGameQuizzScores.sort((a, b) => b.gamescore.compareTo(a.gamescore));
       });
     } else {}
@@ -717,13 +611,6 @@ class _VinylState extends State<Vinyl> {
       if (maxSuite > maxSuiteMax) maxSuiteMax = maxSuite;
       consList[maxSuite] = consList[maxSuite] + 1;
     }
-    // Calcul des Points
-    _scoreQuizz = 0.0;
-    for (int j = 1; j <= maxSuiteMax; j++) {
-      if (consList[j] > 0) {
-        _scoreQuizz = _scoreQuizz + log10(consList[j]) + j * log10(forceQuizz);
-      }
-    }
 
     gameNote = nbGood * (forceQuizz - 1);
   }
@@ -740,7 +627,7 @@ class _VinylState extends State<Vinyl> {
   void setThema(int _thatBd) {
     activeQuizz = _thatBd; //    <tintin=1>
     listPhotoBase.clear;
-    listAlbumBd.clear;
+
     if (_thatBd == SARDOU) {
       listPhotoBase = listSardouCase;
     }
@@ -750,7 +637,6 @@ class _VinylState extends State<Vinyl> {
     nbQuizz = 0;
     nbGood = 0;
     thisGameId = 0;
-
     setState(() {
       random = Random().nextInt(listSardouCase.length - 1); //<PML> pas sur
     });

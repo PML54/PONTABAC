@@ -41,7 +41,7 @@ class _MenoPaulState extends State<MenoPaul> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Bac de Pontoise 1.162' + QuizzCommons.myPseudo,
+          'Bac de Pontoise 1.186' + QuizzCommons.myPseudo,
           style: GoogleFonts.averageSans(fontSize: 15.0),
         ),
       ),
@@ -104,7 +104,6 @@ class _MenoPaulState extends State<MenoPaul> {
                   ),
                   //--->   'Nouveau Candidat?',
                   // VideoPlayerApp
-
 
                   // --> Reviser       Tinrtin
                   Visibility(
@@ -209,16 +208,16 @@ class _MenoPaulState extends State<MenoPaul> {
                     ),
                   ),
                   Visibility(
-                    visible: QuizzCommons.myProfile & 65 == 65,
+                    visible: QuizzCommons.myProfile & 1 == 1,
                     child: Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: ElevatedButton(
                         child: Text(
-                          'Bac S(ardou) Test',
+                          'Bac S(ardou) T(itres)',
                           style: GoogleFonts.averageSans(fontSize: 25.0),
                         ),
                         onPressed: () {
-                          QuizzCommons.thatBac = SARDOU;
+                          QuizzCommons.thatBac = SARDOUT;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -232,8 +231,7 @@ class _MenoPaulState extends State<MenoPaul> {
                     child: Visibility(
                       visible: QuizzCommons.myProfile != CERTIFIED_PML &&
                           QuizzCommons.myProfile != 5,
-                      child:
-                      Padding(
+                      child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: ElevatedButton(
                           child: Text(
