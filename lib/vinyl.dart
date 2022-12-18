@@ -243,11 +243,11 @@ class _VinylState extends State<Vinyl> {
     Uri url = Uri.parse(pathPHP + "createGAMEQUIZZBD.php");
 
     var _codeGame="SARDOU";
-
+    if  (QuizzCommons.thatBac==3)  _codeGame="SARDOU";
     if  (QuizzCommons.thatBac==4)  _codeGame="SARDOUT";
     if  (QuizzCommons.thatBac==5)  _codeGame="BREL";
     var data = {
-
+// Attention    THATBD est Un code pas une Table MYSQL
       "THATBD": _codeGame,
       "GAMER": QuizzCommons.myPseudo,
       "GAMERID": QuizzCommons.myUid.toString(),
@@ -454,7 +454,7 @@ class _VinylState extends State<Vinyl> {
   @override
   void initState() {
     super.initState();
-   // activeQuizz = SARDOU; // SArdou
+
     activeQuizz= QuizzCommons.thatBac;
     readBdSinger();
     readQuizzSongs();
@@ -508,7 +508,7 @@ class _VinylState extends State<Vinyl> {
     Uri url = Uri.parse(pathPHP + "readBD.php");
     readBdSingerState = false;
     var _singerBD="SARDOUBD";
-
+    if  (QuizzCommons.thatBac==3)  _singerBD="SARDOUBD";
     if  (QuizzCommons.thatBac==4)  _singerBD="SARDOUBD";
     if  (QuizzCommons.thatBac==5)  _singerBD="BRELBD";
     var data = {"BDSTORY": _singerBD};
@@ -523,7 +523,7 @@ class _VinylState extends State<Vinyl> {
         listSingerCase
             .sort((a, b) => a.photofilename.compareTo(b.photofilename));
       });
-
+//  <PML> A checker
       setThema(SARDOU); // On met tintin par defaut
     } else {}
   }
@@ -533,11 +533,12 @@ class _VinylState extends State<Vinyl> {
     readGameQuizzScoresState = false;
 
     var _codeGame="SARDOU";
-
+    if  (QuizzCommons.thatBac==3)  _codeGame="SARDOU";
     if  (QuizzCommons.thatBac==4)  _codeGame="SARDOUT";
     if  (QuizzCommons.thatBac==5)  _codeGame="BREL";
 
     var data = {"THATBD":  _codeGame};
+    // THATBD ext un code  pas une table . Cest une column
     http.Response response = await http.post(url, body: data);
     if (response.statusCode == 200) {
       var datamysql = jsonDecode(response.body) as List;
@@ -572,15 +573,12 @@ class _VinylState extends State<Vinyl> {
 
   void reportFigures() {
     var consList = List.generate(nbQuizz + 1, (index) => 0);
-
     reportAnswer = "";
     reportInode = "";
     reportQuizz = "";
     reportGoodbd = "";
-
     double _scoreQuizz = 0;
     int maxSuite = 0;
-
     int lastgood = 0;
     maxSuiteMax = 0;
 
@@ -625,12 +623,13 @@ class _VinylState extends State<Vinyl> {
   }
 
   void setThema(int _thatBd) {
+        //<PML> a checker usage de _thatBd
     activeQuizz = _thatBd; //    <tintin=1>
     listPhotoBase.clear;
 
-    if (_thatBd == SARDOU) {
+   // if (_thatBd == SARDOU) {
       listPhotoBase = listSingerCase;
-    }
+   // }
 
     quizzOver = true; //  On ne paut modifier en coirs de Game
     totalSeconds = 60;
@@ -662,7 +661,6 @@ class _VinylState extends State<Vinyl> {
     });
     createGameQuizzBd();
   }
-
   void startTimer() {
     timer = Timer.periodic(const Duration(seconds: 1), (_) => addTime());
   }
@@ -692,7 +690,6 @@ class _VinylState extends State<Vinyl> {
     };
 
     http.Response response = await http.post(url, body: data);
-
     if (response.statusCode == 200) {
       setState(() {
         updateGameQuizzBdState = true;

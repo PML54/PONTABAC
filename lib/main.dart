@@ -41,7 +41,7 @@ class _MenoPaulState extends State<MenoPaul> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Bac de Pontoise 1.188' + QuizzCommons.myPseudo,
+          'Bac de Pontoise 1.189' + QuizzCommons.myPseudo,
           style: GoogleFonts.averageSans(fontSize: 15.0),
         ),
       ),
