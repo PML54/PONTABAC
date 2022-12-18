@@ -41,7 +41,7 @@ class _MenoPaulState extends State<MenoPaul> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Bac de Pontoise 1.186' + QuizzCommons.myPseudo,
+          'Bac de Pontoise 1.188' + QuizzCommons.myPseudo,
           style: GoogleFonts.averageSans(fontSize: 15.0),
         ),
       ),
@@ -193,8 +193,8 @@ class _MenoPaulState extends State<MenoPaul> {
                       padding: const EdgeInsets.all(2.0),
                       child: ElevatedButton(
                         child: Text(
-                          'Bac S(ardou)',
-                          style: GoogleFonts.averageSans(fontSize: 25.0),
+                          'Bac S(ardou) A(lbums)',
+                          style: GoogleFonts.averageSans(fontSize: 22.0),
                         ),
                         onPressed: () {
                           QuizzCommons.thatBac = SARDOU;
@@ -214,7 +214,7 @@ class _MenoPaulState extends State<MenoPaul> {
                       child: ElevatedButton(
                         child: Text(
                           'Bac S(ardou) T(itres)',
-                          style: GoogleFonts.averageSans(fontSize: 25.0),
+                          style: GoogleFonts.averageSans(fontSize: 22.0),
                         ),
                         onPressed: () {
                           QuizzCommons.thatBac = SARDOUT;

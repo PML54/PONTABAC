@@ -10,12 +10,6 @@ import 'package:pontabac/configquizz.dart';
 import 'package:pontabac/quizzclass.dart';
 import 'package:pontabac/quizzcommons.dart';
 
-// Quizz orienté Album 33 T
-// Ce sont pas des  cases dse pagers d'albums mais des  vers de chansons de BD
-//ALBUMSARDOU
-//GAMEQUIZZBD
-//SARDOUBD
-
 class Vinyl extends StatefulWidget {
   const Vinyl({Key? key}) : super(key: key);
 
@@ -34,7 +28,7 @@ class _VinylState extends State<Vinyl> {
   bool createGameQuizzBdState = false;
   bool quizzOver = true;
 
-  bool readBdSardouState = false;
+  bool readBdSingerState = false;
   bool quizzHit = true;
   bool readQuizzSongsState = false;
   bool readGameQuizzScoresState = false;
@@ -45,7 +39,7 @@ class _VinylState extends State<Vinyl> {
   Duration countdownDuration = const Duration(seconds: 10000);
   Duration duration = const Duration();
 
-  int activeQuizz = SARDOU; //   <tintin=1>
+  int activeQuizz = 0; //   <tintin=1>
   int forceQuizz = 2;
   int gameNote = 0;
   int maxSuiteMax = 0;
@@ -64,7 +58,7 @@ class _VinylState extends State<Vinyl> {
   List<GameQuizz> listMyGames = [];
   List<GameQuizzScores> listGameQuizzScores = [];
   List<PhotoBd> listPhotoBase = [];
-  List<PhotoBd> listSardouCase = [];
+  List<PhotoBd> listSingerCase = [];
   List<QuizzSongs> listQuizzSongs = [];
   List<QuizzSongs> listQuizzSongsRand = [];
   List<bool> listQuizzSongsRandBool = [];
@@ -246,14 +240,14 @@ class _VinylState extends State<Vinyl> {
 
   Future createGameQuizzBd() async {
     createGameQuizzBdState = false;
-print ("QuizzCommons.thatBac"+QuizzCommons.thatBac.toString());
     Uri url = Uri.parse(pathPHP + "createGAMEQUIZZBD.php");
 
     var _codeGame="SARDOU";
 
     if  (QuizzCommons.thatBac==4)  _codeGame="SARDOUT";
+    if  (QuizzCommons.thatBac==5)  _codeGame="BREL";
     var data = {
-    //  "THATBD": listBD[activeQuizz].bdThis,
+
       "THATBD": _codeGame,
       "GAMER": QuizzCommons.myPseudo,
       "GAMERID": QuizzCommons.myUid.toString(),
@@ -285,7 +279,7 @@ print ("QuizzCommons.thatBac"+QuizzCommons.thatBac.toString());
 
   Expanded displayCase() {
     quizzHit = false;
-    if (!readBdSardouState) {
+    if (!readBdSingerState) {
       return Expanded(
         child: Column(
           children: const [
@@ -460,8 +454,9 @@ print ("QuizzCommons.thatBac"+QuizzCommons.thatBac.toString());
   @override
   void initState() {
     super.initState();
-    activeQuizz = SARDOU; // SArdou
-    readBdSardou();
+   // activeQuizz = SARDOU; // SArdou
+    activeQuizz= QuizzCommons.thatBac;
+    readBdSinger();
     readQuizzSongs();
 
     quizzOver = true;
@@ -509,19 +504,23 @@ print ("QuizzCommons.thatBac"+QuizzCommons.thatBac.toString());
     print("listQuizzSongsRand ----> " + listQuizzSongsRand.length.toString());
   }
 
-  Future readBdSardou() async {
+  Future readBdSinger() async {
     Uri url = Uri.parse(pathPHP + "readBD.php");
-    readBdSardouState = false;
-    var data = {"BDSTORY": "SARDOUBD"};
+    readBdSingerState = false;
+    var _singerBD="SARDOUBD";
+
+    if  (QuizzCommons.thatBac==4)  _singerBD="SARDOUBD";
+    if  (QuizzCommons.thatBac==5)  _singerBD="BRELBD";
+    var data = {"BDSTORY": _singerBD};
     http.Response response = await http.post(url, body: data);
 
     if (response.statusCode == 200) {
       var datamysql = jsonDecode(response.body) as List;
       setState(() {
-        listSardouCase =
+        listSingerCase =
             datamysql.map((xJson) => PhotoBd.fromJson(xJson)).toList();
-        readBdSardouState = true;
-        listSardouCase
+        readBdSingerState = true;
+        listSingerCase
             .sort((a, b) => a.photofilename.compareTo(b.photofilename));
       });
 
@@ -536,6 +535,7 @@ print ("QuizzCommons.thatBac"+QuizzCommons.thatBac.toString());
     var _codeGame="SARDOU";
 
     if  (QuizzCommons.thatBac==4)  _codeGame="SARDOUT";
+    if  (QuizzCommons.thatBac==5)  _codeGame="BREL";
 
     var data = {"THATBD":  _codeGame};
     http.Response response = await http.post(url, body: data);
@@ -629,7 +629,7 @@ print ("QuizzCommons.thatBac"+QuizzCommons.thatBac.toString());
     listPhotoBase.clear;
 
     if (_thatBd == SARDOU) {
-      listPhotoBase = listSardouCase;
+      listPhotoBase = listSingerCase;
     }
 
     quizzOver = true; //  On ne paut modifier en coirs de Game
@@ -638,7 +638,7 @@ print ("QuizzCommons.thatBac"+QuizzCommons.thatBac.toString());
     nbGood = 0;
     thisGameId = 0;
     setState(() {
-      random = Random().nextInt(listSardouCase.length - 1); //<PML> pas sur
+      random = Random().nextInt(listSingerCase.length - 1); //<PML> pas sur
     });
   }
 
