@@ -11,7 +11,7 @@ import 'package:pontabac/userconnect.dart';
 import 'package:pontabac/usercreate.dart';
 import 'package:pontabac/videosardou.dart';
 import 'package:pontabac/vinyl.dart';
-
+import 'package:pontabac/platine.dart';
 void main() {
   runApp(const MaterialApp(title: 'Navigation Basics', home: MenoPaul()));
 }
@@ -41,7 +41,7 @@ class _MenoPaulState extends State<MenoPaul> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Bac de Pontoise 1.189' + QuizzCommons.myPseudo,
+          'Bac de Pontoise 2.01' + QuizzCommons.myPseudo,
           style: GoogleFonts.averageSans(fontSize: 15.0),
         ),
       ),
@@ -222,6 +222,26 @@ class _MenoPaulState extends State<MenoPaul> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const Vinyl()),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: QuizzCommons.myProfile & 1 == 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: ElevatedButton(
+                        child: Text(
+                          'Bac B(rel)',
+                          style: GoogleFonts.averageSans(fontSize: 22.0),
+                        ),
+                        onPressed: () {
+                          QuizzCommons.thatBac = BREL;
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Platine()),
                           );
                         },
                       ),

@@ -10,14 +10,14 @@ import 'package:pontabac/configquizz.dart';
 import 'package:pontabac/quizzclass.dart';
 import 'package:pontabac/quizzcommons.dart';
 
-class Vinyl extends StatefulWidget {
-  const Vinyl({Key? key}) : super(key: key);
+class  Platine extends StatefulWidget {
+  const Platine({Key? key}) : super(key: key);
 
   @override
-  State<Vinyl> createState() => _VinylState();
+  State<Platine> createState() => _PlatineState();
 }
 
-class _VinylState extends State<Vinyl> {
+class _PlatineState extends State<Platine> {
   bool booldisplayCase = false;
   bool booldisplayHelp = true;
   bool booldisplayListAlbumRand = false;
@@ -29,6 +29,7 @@ class _VinylState extends State<Vinyl> {
   bool quizzOver = true;
 
   bool readBdSingerState = false;
+  bool readSongOKState=false;
   bool quizzHit = true;
   bool readQuizzSongsState = false;
   bool readGameQuizzScoresState = false;
@@ -61,7 +62,9 @@ class _VinylState extends State<Vinyl> {
   List<PhotoBd> listSingerCase = [];
   List<QuizzSongs> listQuizzSongs = [];
   List<QuizzSongs> listQuizzSongsRand = [];
+  List<GetSongOK> listGetSongOK= [];
   List<bool> listQuizzSongsRandBool = [];
+
   String reportAnswer = "";
   String reportGoodbd = "";
   String reportInode = "";
@@ -86,105 +89,105 @@ class _VinylState extends State<Vinyl> {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-      appBar: AppBar(actions: [
-        Expanded(
-          child: Row(
-            children: [
-              Visibility(
-                  visible: quizzOver,
-                  child: IconButton(
-                    icon: const Icon(Icons.close),
-                    iconSize: 20,
-                    color: Colors.red,
-                    tooltip: 'Quitter',
-                    onPressed: () => {Navigator.pop(context)},
-                  )),
-              Visibility(
-                visible: quizzOver,
-                child: ElevatedButton(
-                  onPressed: () => {startQuizz()},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 2, vertical: 2),
-                      textStyle: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold)),
-                  child: Text(startButton),
-                ),
-              ),
-              Visibility(
-                visible: chronoStart && totalSeconds < 9900 && !quizzOver,
-                child: Text(totalSeconds.toString() + 's',
-                    style: TextStyle(
-                        color: (totalSeconds < 10) ? Colors.red : Colors.white,
-                        fontSize: 20)),
-              ),
-              Visibility(
-                visible: !quizzOver,
-                child: ElevatedButton(
-                  onPressed: () => {},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 2, vertical: 2),
-                      textStyle: const TextStyle(
-                          fontSize: 25,
-                          color: Colors.red,
+          appBar: AppBar(actions: [
+            Expanded(
+              child: Row(
+                children: [
+                  Visibility(
+                      visible: quizzOver,
+                      child: IconButton(
+                        icon: const Icon(Icons.close),
+                        iconSize: 20,
+                        color: Colors.red,
+                        tooltip: 'Quitter',
+                        onPressed: () => {Navigator.pop(context)},
+                      )),
+                  Visibility(
+                    visible: quizzOver,
+                    child: ElevatedButton(
+                      onPressed: () => {startQuizz()},
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 2, vertical: 2),
+                          textStyle: const TextStyle(
+                              fontSize: 20,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold)),
+                      child: Text(startButton),
+                    ),
+                  ),
+                  Visibility(
+                    visible: chronoStart && totalSeconds < 9900 && !quizzOver,
+                    child: Text(totalSeconds.toString() + 's',
+                        style: TextStyle(
+                            color: (totalSeconds < 10) ? Colors.red : Colors.white,
+                            fontSize: 20)),
+                  ),
+                  Visibility(
+                    visible: !quizzOver,
+                    child: ElevatedButton(
+                      onPressed: () => {},
+                      style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
-                          fontWeight: FontWeight.bold)),
-                  child: Text("             " + newNote.toString() + " Points"),
-                ),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 2, vertical: 2),
+                          textStyle: const TextStyle(
+                              fontSize: 25,
+                              color: Colors.red,
+                              backgroundColor: Colors.blue,
+                              fontWeight: FontWeight.bold)),
+                      child: Text("             " + newNote.toString() + " Points"),
+                    ),
+                  ),
+                  Visibility(
+                      visible: quizzOver,
+                      child: IconButton(
+                          icon: const Icon(Icons.tv),
+                          iconSize: 30,
+                          color: Colors.greenAccent,
+                          tooltip: 'Classement',
+                          onPressed: () {
+                            setState(() {
+                              boolScore = !boolScore;
+                              booldisplayHelp = !boolScore;
+                            });
+                          })),
+                  Visibility(
+                      visible: quizzOver,
+                      child: IconButton(
+                          icon: const Icon(Icons.help),
+                          iconSize: 30,
+                          color: Colors.greenAccent,
+                          tooltip: 'Help',
+                          onPressed: () {
+                            setState(() {
+                              boolScore = !boolScore;
+                              booldisplayHelp = !boolScore;
+                            });
+                          })),
+                  Visibility(
+                    visible: quizzOver,
+                    child: ElevatedButton(
+                      onPressed: () => {incForce()},
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 2, vertical: 2),
+                          textStyle: const TextStyle(
+                              fontSize: 15,
+                              color: Colors.red,
+                              backgroundColor: Colors.green,
+                              fontWeight: FontWeight.bold)),
+                      child: Text("Niveau=" + forceQuizz.toString()),
+                    ),
+                  ),
+                ],
               ),
-              Visibility(
-                  visible: quizzOver,
-                  child: IconButton(
-                      icon: const Icon(Icons.tv),
-                      iconSize: 30,
-                      color: Colors.greenAccent,
-                      tooltip: 'Classement',
-                      onPressed: () {
-                        setState(() {
-                          boolScore = !boolScore;
-                          booldisplayHelp = !boolScore;
-                        });
-                      })),
-              Visibility(
-                  visible: quizzOver,
-                  child: IconButton(
-                      icon: const Icon(Icons.help),
-                      iconSize: 30,
-                      color: Colors.greenAccent,
-                      tooltip: 'Help',
-                      onPressed: () {
-                        setState(() {
-                          boolScore = !boolScore;
-                          booldisplayHelp = !boolScore;
-                        });
-                      })),
-              Visibility(
-                visible: quizzOver,
-                child: ElevatedButton(
-                  onPressed: () => {incForce()},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 2, vertical: 2),
-                      textStyle: const TextStyle(
-                          fontSize: 15,
-                          color: Colors.red,
-                          backgroundColor: Colors.green,
-                          fontWeight: FontWeight.bold)),
-                  child: Text("Niveau=" + forceQuizz.toString()),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ]),
-      body: !quizzOver ? displayGame() : displayNoGame(),
-    ));
+            ),
+          ]),
+          body: !quizzOver ? displayGame() : displayNoGame(),
+        ));
   }
 
   buildTime() {
@@ -203,7 +206,7 @@ class _VinylState extends State<Vinyl> {
       startButton = "Start";
 
       //  Navigator.pop(context);
-      setThema(SARDOU);
+      setThema(BREL);
     } else {
       quizzOver = false;
     }
@@ -211,16 +214,16 @@ class _VinylState extends State<Vinyl> {
 
   void checkQuizz(indexalbum, indexobjet) {
     if (quizzOver) return;
+    print("in checkQuizz N°1 =" + indexalbum.toString());
 
+    // Update Historic
+    thisGameHistoric.thatinode = listPhotoBase[random].photoinode;
+    thisGameHistoric.goodbd = listPhotoBase[random].photoalbum;
+    thisGameHistoric.bdreponse = indexalbum;
+    listGameHistoric.add(thisGameHistoric);
 
-      // Update Historic
-      thisGameHistoric.thatinode = listPhotoBase[random].photoinode;
-      thisGameHistoric.goodbd = listPhotoBase[random].photoalbum;
-      thisGameHistoric.bdreponse = indexalbum;
-      listGameHistoric.add(thisGameHistoric);
-
-      //
-      thisGameHistoric = GameHistoric(8, 1, 2, []);
+    //
+    thisGameHistoric = GameHistoric(8, 1, 2, []);
     setState(() {
       nbQuizz++;
       if ((indexalbum) == listPhotoBase[random].photophl) {
@@ -233,12 +236,13 @@ class _VinylState extends State<Vinyl> {
         listQuizzSongsRandBool[indexobjet] = false;
       }
 
+
     });
 
 
-      majSongRand(); //
+    majSongRand(); //
 
-      while ((getRandomSong()) == 1   ) { }
+    while ((getRandomSong()) == 1) {}
 
   }
 
@@ -295,11 +299,11 @@ class _VinylState extends State<Vinyl> {
     return Expanded(
         child: GestureDetector(
             onTap: () => {
-                  setState(() {
-                    //<PML> pas de zoom  pour du text
-                    //  boolZoom = !boolZoom;
-                  })
-                },
+              setState(() {
+                //<PML> pas de zoom  pour du text
+                //  boolZoom = !boolZoom;
+              })
+            },
             child: Container(
                 alignment: Alignment.topLeft,
                 child: Text(
@@ -431,7 +435,7 @@ class _VinylState extends State<Vinyl> {
     //  Maintenant  Verifions que Random appartient ) la liste
     //  Dans le principe   On regarde si la bonne réponse
     // fait partie de la selection aleatoire
-
+print ("listPhotoBase[random].photophl "+listPhotoBase[random].photophl.toString());
     for (QuizzSongs _album in listQuizzSongsRand) {
       if (_album.songid == listPhotoBase[random].photophl) {
 // Ici C'est OK il appartient à la lastre
@@ -442,6 +446,7 @@ class _VinylState extends State<Vinyl> {
       }
     }
     errorRandom = 1;
+
     return (errorRandom);
   }
 
@@ -473,7 +478,7 @@ class _VinylState extends State<Vinyl> {
   void majSongRand() {
     //  Tirer au  Hasard  les Chansons
 //
-    int _nbElem = listBD[activeQuizz].bdLast - listBD[activeQuizz].bdFirst + 1;
+    int _nbElem =  1;
     int _startAlbum = listBD[activeQuizz].bdFirst; //+1 ??
     // Pour les chansons
     _nbElem = listQuizzSongs.length;
@@ -506,6 +511,8 @@ class _VinylState extends State<Vinyl> {
     print("listQuizzSongsRand ----> " + listQuizzSongsRand.length.toString());
   }
 
+
+
   Future readBdSinger() async {
     Uri url = Uri.parse(pathPHP + "readBD.php");
     readBdSingerState = false;
@@ -526,7 +533,8 @@ class _VinylState extends State<Vinyl> {
             .sort((a, b) => a.photofilename.compareTo(b.photofilename));
       });
 //  <PML> A checker
-      setThema(SARDOU); // On met tintin par defaut
+      readSongOK();
+      setThema(BREL); // On met tintin par defaut
     } else {}
   }
 
@@ -554,11 +562,30 @@ class _VinylState extends State<Vinyl> {
     } else {}
   }
 
+  // readSongOK.php
+  Future readSongOK() async {
+    Uri url = Uri.parse(pathPHP + "readSongOK.php");
+    readSongOKState = false;
+    var data = {
+      "BDNAME": "BRELBD",
+    };
+
+    http.Response response = await http.post(url, body: data);
+    if (response.statusCode == 200) {
+      var datamysql = jsonDecode(response.body) as List;
+      setState(() {
+        listGetSongOK=
+            datamysql.map((xJson) => GetSongOK.fromJson(xJson)).toList();
+        readSongOKState = true;
+        print(" listQuizzSongs=" + listQuizzSongs.length.toString());
+      });
+    } else {}
+  }
   Future readQuizzSongs() async {
     Uri url = Uri.parse(pathPHP + "readQUIZZSONGLIMITED.php");
     readQuizzSongsState = false;
     var data = {
-      "BDNAME": "SARDOUSONGLIMITED",
+      "BDNAME": "BRELSONG",
     };
 
     http.Response response = await http.post(url, body: data);
@@ -625,13 +652,13 @@ class _VinylState extends State<Vinyl> {
   }
 
   void setThema(int _thatBd) {
-        //<PML> a checker usage de _thatBd
+    //<PML> a checker usage de _thatBd
     activeQuizz = _thatBd; //    <tintin=1>
     listPhotoBase.clear;
 
-   // if (_thatBd == SARDOU) {
-      listPhotoBase = listSingerCase;
-   // }
+    // if (_thatBd == SARDOU) {
+    listPhotoBase = listSingerCase;
+    // }
 
     quizzOver = true; //  On ne paut modifier en coirs de Game
     totalSeconds = 60;

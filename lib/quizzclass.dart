@@ -30,10 +30,17 @@ final listBD = [
     1,
   ),
   ConfigQuizzBd(
+    "SARDOU",
+    "ALBUMSASTERIX",
+    "SARDOUBD",
+    26,
+    1,
+  ),
+  ConfigQuizzBd(
     "BREL",
     "ALBUMSASTERIX",
     "BRELBD",
-    13,
+    9,
     1,
   ),
 ];
@@ -219,7 +226,22 @@ class GamePhotoSelect {
     );
   }
 }
+class GetSongOK {
+  int photophl = 0;
 
+
+  GetSongOK({
+    required this.photophl,
+
+  });
+
+  factory GetSongOK.fromJson(Map<String, dynamic> json) {
+    return GetSongOK(
+      photophl: int.parse(json['PHOTOPHL']),
+
+    );
+  }
+}
 class GameQuizz {
   int gameid = 0; // Auto
   String gamedate = "2022-05-05";
