@@ -41,7 +41,7 @@ class _MenoPaulState extends State<MenoPaul> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Bac 2.10 Candidat ' + QuizzCommons.myPseudo,
+          'Bac 2.11 Candidat ' + QuizzCommons.myPseudo,
           style: GoogleFonts.averageSans(fontSize: 15.0),
         ),
       ),

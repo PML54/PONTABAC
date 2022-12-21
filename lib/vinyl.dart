@@ -176,7 +176,7 @@ class _VinylState extends State<Vinyl> {
                           color: Colors.red,
                           backgroundColor: Colors.green,
                           fontWeight: FontWeight.bold)),
-                  child: Text("Niveau=" + forceQuizz.toString()),
+                  child: Text("Force=" + forceQuizz.toString()),
                 ),
               ),
             ],

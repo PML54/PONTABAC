@@ -69855,7 +69855,7 @@ A.NN.prototype={
 P(a){var s,r,q,p,o,n,m,l,k,j,i,h,g,f=null
 this.G(new A.adH())
 A.a8g(B.l0)
-s=A.mT(f,A.bs("Bac 2.10 Candidat "+$.xY,f,f,f,A.k5(f,15),f,f))
+s=A.mT(f,A.bs("Bac 2.11 Candidat "+$.xY,f,f,f,A.k5(f,15),f,f))
 r=t.w
 q=a.Y(r).f
 r=a.Y(r).f
@@ -69989,7 +69989,7 @@ q=A.bt(A.dX(B.da,B.h7,30,new A.aeo(m),"Classement"),r)
 p=A.bt(A.dX(B.da,B.n7,30,new A.aep(m),"Help"),r)
 o=A.eM(l,l,B.a5,l,l,l,l,l,l,l,l,l,B.T,l,l,l,l,B.eW,l)
 n=t.p
-r=A.mT(A.a([A.cJ(A.dn(A.a([j,k,i,s,q,p,A.bt(A.cy(A.bs("Niveau="+B.e.i(m.fr),l,l,l,l,l,l),new A.aeq(m),o),r)],n),B.v,B.u))],n),l)
+r=A.mT(A.a([A.cJ(A.dn(A.a([j,k,i,s,q,p,A.bt(A.cy(A.bs("Force="+B.e.i(m.fr),l,l,l,l,l,l),new A.aeq(m),o),r)],n),B.v,B.u))],n),l)
 if(!m.Q)k=A.dn(A.a([new A.fY(B.R,l,l,m.lg(),l),m.ls(),m.Bn()],n),B.v,B.u)
 else k=A.dn(A.a([m.e?A.dn(A.a([A.bt(A.qj("upload/helppontabac.png",l,l,l),!0)],n),B.v,B.u):m.eW()],n),B.v,B.u)
 return A.GT(A.m0(r,k,l,l))},
@@ -70978,7 +70978,7 @@ s.AE(s.RG[this.b].a)}},
 $S:0}
 A.afV.prototype={
 $2(a,b){var s=null,r=B.e.i(b+1),q=this.a,p=q.x1[b]
-return A.nJ(!0,new A.afU(q),A.bs(" N\xb0"+r+":"+p.a+"-->  "+B.e.i(p.r)+" Pts <Niveau="+B.e.i(q.x1[b].c)+">",s,s,s,A.d2(s,s,B.l,s,s,s,s,s,"Lobster",s,s,15,B.aR,s,s,s,s,!0,s,s,s,s,s,s,s,s),s,s))},
+return A.nJ(!0,new A.afU(q),A.bs(" N\xb0"+r+":"+p.a+"-->  "+B.e.i(p.r)+" Pts <Force="+B.e.i(q.x1[b].c)+">",s,s,s,A.d2(s,s,B.l,s,s,s,s,s,"Lobster",s,s,15,B.aR,s,s,s,s,!0,s,s,s,s,s,s,s,s),s,s))},
 $S:23}
 A.afU.prototype={
 $0(){this.a.G(new A.afT())},
@@ -71370,7 +71370,7 @@ q=A.bt(A.dX(B.da,B.h7,30,new A.aih(m),"Classement"),r)
 p=A.bt(A.dX(B.da,B.n7,30,new A.aii(m),"Help"),r)
 o=A.eM(l,l,B.a5,l,l,l,l,l,l,l,l,l,B.T,l,l,l,l,B.eW,l)
 n=t.p
-r=A.mT(A.a([A.cJ(A.dn(A.a([j,k,i,s,q,p,A.bt(A.cy(A.bs("Niveau="+B.e.i(m.dy),l,l,l,l,l,l),new A.aij(m),o),r)],n),B.v,B.u))],n),l)
+r=A.mT(A.a([A.cJ(A.dn(A.a([j,k,i,s,q,p,A.bt(A.cy(A.bs("Force="+B.e.i(m.dy),l,l,l,l,l,l),new A.aij(m),o),r)],n),B.v,B.u))],n),l)
 if(!m.Q)k=A.dn(A.a([new A.fY(B.R,l,l,m.lg(),l),m.ls(),m.Bn()],n),B.v,B.u)
 else k=A.dn(A.a([m.e?A.dn(A.a([A.bt(A.qj("upload/helppontabac.png",l,l,l),!0)],n),B.v,B.u):m.eW()],n),B.v,B.u)
 return A.GT(A.m0(r,k,l,l))},
