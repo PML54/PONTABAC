@@ -313,7 +313,7 @@ class _QuizzZizikState extends State<QuizzZizik> {
       Visibility(
         visible: booldisplayHelp,
         child: Image.network(
-          "upload/helpsardou.png",
+          "upload/helppontabac.png",
           /*
              width: 800,
              height: 1000,*/

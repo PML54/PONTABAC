@@ -322,7 +322,7 @@ class _VinylState extends State<Vinyl> {
       Visibility(
         visible: booldisplayHelp,
         child: Image.network(
-          "upload/helpsardou.png",
+          "upload/helppontabac.png",
         ),
       ),
     ]);

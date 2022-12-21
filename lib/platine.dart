@@ -326,7 +326,7 @@ class _PlatineState extends State<Platine> {
       Visibility(
         visible: booldisplayHelp,
         child: Image.network(
-          "upload/helpsardou.png",
+          "upload/helppontabac.png",
         ),
       ),
     ]);
