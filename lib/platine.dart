@@ -346,13 +346,14 @@ class _PlatineState extends State<Platine> {
         controller: ScrollController(),
         itemBuilder: (context, index) {
           return ListTile(
-              leading: CircleAvatar(
+           /*   leading:
+              CircleAvatar(
                 radius: 10.0,
                 backgroundColor: listQuizzSongsRandBool[index]
                     ? Colors.green
                     : Colors.red,
                 child: Text("?"),
-              ),
+              ),*/
               title: Text(
                 listQuizzSongsRand[index].songname,
                 style: TextStyle(
