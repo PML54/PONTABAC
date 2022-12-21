@@ -305,7 +305,7 @@ class _VinylState extends State<Vinyl> {
                 child: Text(
                   listPhotoBase[random].photouploader,
                   textDirection: TextDirection.ltr,
-                  style: GoogleFonts.pacifico(fontSize: 30),
+                  style: GoogleFonts.pacifico(fontSize: 25),
                 ))));
   }
 

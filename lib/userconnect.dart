@@ -71,7 +71,7 @@ class _LoginPage extends State<LoginPage> {
           Container(
             margin: const EdgeInsets.only(top: 10),
             child: const Text(
-              "Bac S(ardou) Bac T(intin)  ",
+              "Bac S(ardou) Bac T(intin)  Bac B(rel) ",
               style: TextStyle(color: Colors.white, fontSize: 15),
             ), //subtitle text
           ),

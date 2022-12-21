@@ -309,7 +309,7 @@ class _PlatineState extends State<Platine> {
                 child: Text(
                   listPhotoBase[random].photouploader,
                   textDirection: TextDirection.ltr,
-                  style: GoogleFonts.pacifico(fontSize: 30),
+                  style: GoogleFonts.pacifico(fontSize: 25),
                 ))));
   }
 
@@ -358,7 +358,7 @@ class _PlatineState extends State<Platine> {
                 style: TextStyle(
                     color: Colors.red,
                     fontStyle: FontStyle.normal,
-                    fontSize: 22),
+                    fontSize: 20),
               ),
               onTap: () {
                 setState(() {
