@@ -61,7 +61,7 @@ class _LoginPage extends State<LoginPage> {
           Container(
             margin: const EdgeInsets.only(top: 80),
             child: const Text(
-              "Passez le Bac S  de 🎄 ",
+              "Bac de 🎄 ",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 35,
@@ -71,7 +71,7 @@ class _LoginPage extends State<LoginPage> {
           Container(
             margin: const EdgeInsets.only(top: 10),
             child: const Text(
-              "Bac  B(rel) S(ardou) T(intin)",
+              "Bac B(rel) S(ardou) T(intin)",
               style: TextStyle(color: Colors.white, fontSize: 15),
             ), //subtitle text
           ),
