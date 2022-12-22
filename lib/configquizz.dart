@@ -7,6 +7,7 @@ const int ASTERIX=2;
 const int SARDOU=3;
 const int SARDOUT=4;
 const int BREL=5;
+const int LAFONTAINE=6;
 const int CERTIFIED_PML  =65;
 const int ADMIN_PML=128;
 

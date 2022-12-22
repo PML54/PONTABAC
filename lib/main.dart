@@ -41,7 +41,7 @@ class _MenoPaulState extends State<MenoPaul> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Bac 2.11 Candidat ' + QuizzCommons.myPseudo,
+          'Bac 2.12 Candidat ' + QuizzCommons.myPseudo,
           style: GoogleFonts.averageSans(fontSize: 15.0),
         ),
       ),
@@ -238,6 +238,26 @@ class _MenoPaulState extends State<MenoPaul> {
                         ),
                         onPressed: () {
                           QuizzCommons.thatBac = BREL;
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Platine()),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: QuizzCommons.myProfile & 1 == 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: ElevatedButton(
+                        child: Text(
+                          'Bac L(afontaine)',
+                          style: GoogleFonts.averageSans(fontSize: 22.0),
+                        ),
+                        onPressed: () {
+                          QuizzCommons.thatBac = LAFONTAINE;
                           Navigator.push(
                             context,
                             MaterialPageRoute(

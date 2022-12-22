@@ -254,6 +254,7 @@ class _PlatineState extends State<Platine> {
     if  (QuizzCommons.thatBac==3)  _codeGame="SARDOU";
     if  (QuizzCommons.thatBac==4)  _codeGame="SARDOUT";
     if  (QuizzCommons.thatBac==5)  _codeGame="BREL";
+    if  (QuizzCommons.thatBac==6)  _codeGame="LAFONTAINE";
     var data = {
 // Attention    THATBD est Un code pas une Table MYSQL
       "THATBD": _codeGame,
@@ -521,6 +522,7 @@ print ("listPhotoBase[random].photophl "+listPhotoBase[random].photophl.toString
     if  (QuizzCommons.thatBac==3)  _singerBD="SARDOUBD";
     if  (QuizzCommons.thatBac==4)  _singerBD="SARDOUBD";
     if  (QuizzCommons.thatBac==5)  _singerBD="BRELBD";
+    if  (QuizzCommons.thatBac==6)  _singerBD="LAFONTAINEBD";
     var data = {"BDSTORY": _singerBD};
     http.Response response = await http.post(url, body: data);
 
@@ -547,7 +549,7 @@ print ("listPhotoBase[random].photophl "+listPhotoBase[random].photophl.toString
     if  (QuizzCommons.thatBac==3)  _codeGame="SARDOU";
     if  (QuizzCommons.thatBac==4)  _codeGame="SARDOUT";
     if  (QuizzCommons.thatBac==5)  _codeGame="BREL";
-
+    if  (QuizzCommons.thatBac==6)  _codeGame="LAFONTAINE";
     var data = {"THATBD":  _codeGame};
     // THATBD ext un code  pas une table . Cest une column
     http.Response response = await http.post(url, body: data);
@@ -567,8 +569,11 @@ print ("listPhotoBase[random].photophl "+listPhotoBase[random].photophl.toString
   Future readSongOK() async {
     Uri url = Uri.parse(pathPHP + "readSongOK.php");
     readSongOKState = false;
+var  _singerBD="BRELBD";
+    if  (QuizzCommons.thatBac==5)  _singerBD="BRELBD";
+    if  (QuizzCommons.thatBac==6)  _singerBD="LAFONTAINEBD";
     var data = {
-      "BDNAME": "BRELBD",
+      "BDNAME":_singerBD,
     };
 
     http.Response response = await http.post(url, body: data);
@@ -585,8 +590,12 @@ print ("listPhotoBase[random].photophl "+listPhotoBase[random].photophl.toString
   Future readQuizzSongs() async {
     Uri url = Uri.parse(pathPHP + "readQUIZZSONGLIMITED.php");
     readQuizzSongsState = false;
+    var _codeGame="BRELSONG";
+
+    if  (QuizzCommons.thatBac==5)  _codeGame="BRELSONG";
+    if  (QuizzCommons.thatBac==6)  _codeGame="LAFONTAINESONG";
     var data = {
-      "BDNAME": "BRELSONG",
+      "BDNAME":  _codeGame,
     };
 
     http.Response response = await http.post(url, body: data);
