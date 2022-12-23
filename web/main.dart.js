@@ -69857,7 +69857,7 @@ A.NN.prototype={
 P(a){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e=null
 this.G(new A.adI())
 A.a8g(B.l0)
-s=A.mT(e,A.br("Bac 2.12 Candidat "+$.xY,e,e,e,A.iN(e,15),e,e))
+s=A.mT(e,A.br("Bac 2.13 Candidat "+$.xY,e,e,e,A.iN(e,15),e,e))
 r=t.w
 q=a.Y(r).f
 r=a.Y(r).f
@@ -69878,7 +69878,7 @@ j=A.bs(new A.cY(B.P,A.cr(A.br("Bac S(ardou) T(itres)",e,e,e,A.iN(e,22),e,e),new 
 i=$.kn
 i=A.bs(new A.cY(B.P,A.cr(A.br("Bac B(rel)",e,e,e,A.iN(e,22),e,e),new A.adQ(a),e),e),(i&1)===1)
 h=$.kn
-h=A.bs(new A.cY(B.P,A.cr(A.br("Bac L(afontaine)",e,e,e,A.iN(e,22),e,e),new A.adR(a),e),e),(h&1)===1)
+h=A.bs(new A.cY(B.P,A.cr(A.br("Bac L(afontaine)",e,e,e,A.iN(e,22),e,e),new A.adR(a),e),e),h===65)
 g=$.kn
 g=g!==65&&g!==5
 f=t.p
