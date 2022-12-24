@@ -214,7 +214,7 @@ class _PlatineState extends State<Platine> {
 
   void checkQuizz(indexalbum, indexobjet) {
     if (quizzOver) return;
-    print("in checkQuizz N°1 =" + indexalbum.toString());
+
 
     // Update Historic
     thisGameHistoric.thatinode = listPhotoBase[random].photoinode;
@@ -437,11 +437,11 @@ class _PlatineState extends State<Platine> {
     //  Maintenant  Verifions que Random appartient ) la liste
     //  Dans le principe   On regarde si la bonne réponse
     // fait partie de la selection aleatoire
-print ("listPhotoBase[random].photophl "+listPhotoBase[random].photophl.toString());
+
     for (QuizzSongs _album in listQuizzSongsRand) {
       if (_album.songid == listPhotoBase[random].photophl) {
 // Ici C'est OK il appartient à la lastre
-        print("On a trouvé");
+
         thisGameHistoric.thatinode = listPhotoBase[random].photoinode;
         thisGameHistoric.goodbd = listPhotoBase[random].photoalbum;
         return (0);
@@ -492,6 +492,23 @@ print ("listPhotoBase[random].photophl "+listPhotoBase[random].photophl.toString
     listObjects.shuffle();
     randListObjects.clear(); // Numéros
     randListObjects = listObjects.sublist(0, p);
+
+
+    //
+    if  (QuizzCommons.thatBac==6) {
+      listObjects.clear();
+
+
+      for (QuizzSongs _album in listQuizzSongs) {
+        listObjects.add(_album.songid);
+
+      }
+      listObjects.shuffle();
+      randListObjects.clear(); // Numéros
+      randListObjects = listObjects.sublist(0, p);
+      //_singerBD = "LAFONTAINEBD";
+    }
+
     // Historic
     thisGameHistoric.bdquizz = randListObjects;
     // On  utilise cette liste pour extraire les
@@ -502,7 +519,7 @@ print ("listPhotoBase[random].photophl "+listPhotoBase[random].photophl.toString
       listQuizzSongsRandBool.add(false);
     }
 
-    print("randListObjects = " + randListObjects.length.toString());
+
     for (int i = 0; i < p; i++) {
       for (QuizzSongs _album in listQuizzSongs) {
         if (_album.songid == randListObjects[i]) {
@@ -510,7 +527,7 @@ print ("listPhotoBase[random].photophl "+listPhotoBase[random].photophl.toString
         }
       }
     }
-    print("listQuizzSongsRand ----> " + listQuizzSongsRand.length.toString());
+
   }
 
 
@@ -583,7 +600,7 @@ var  _singerBD="BRELBD";
         listGetSongOK=
             datamysql.map((xJson) => GetSongOK.fromJson(xJson)).toList();
         readSongOKState = true;
-        print(" listQuizzSongs=" + listQuizzSongs.length.toString());
+
       });
     } else {}
   }
@@ -605,7 +622,7 @@ var  _singerBD="BRELBD";
         listQuizzSongs =
             datamysql.map((xJson) => QuizzSongs.fromJson(xJson)).toList();
         readQuizzSongsState = true;
-        print(" listQuizzSongs=" + listQuizzSongs.length.toString());
+
       });
     } else {}
   }

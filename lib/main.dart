@@ -41,7 +41,7 @@ class _MenoPaulState extends State<MenoPaul> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Bac 2.13 Candidat ' + QuizzCommons.myPseudo,
+          'Bac 2.14 Candidat ' + QuizzCommons.myPseudo,
           style: GoogleFonts.averageSans(fontSize: 15.0),
         ),
       ),
@@ -248,7 +248,7 @@ class _MenoPaulState extends State<MenoPaul> {
                     ),
                   ),
                   Visibility(
-                    visible: QuizzCommons.myProfile == CERTIFIED_PML,
+                    visible: QuizzCommons.myProfile & 1 == 1,
                     child: Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: ElevatedButton(
