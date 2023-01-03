@@ -43,13 +43,15 @@ class _AdminTintinState extends State<AdminTintin> {
         Visibility(
           visible: true,
           child: Expanded(
-            child: Row(
+            child:
+
+            Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
 
                 IconButton(
                     icon: const Icon(Icons.close),
-                    iconSize: 25,
+                    iconSize: 12,
                     color: Colors.red,
                     tooltip: 'Quitter',
                   onPressed: () => {Navigator.pop(context)},
@@ -57,41 +59,47 @@ class _AdminTintinState extends State<AdminTintin> {
                     ),
                 IconButton(
                     icon: const Icon(Icons.arrow_back),
-                    iconSize: 15,
+                    iconSize: 12,
                     color: Colors.red,
                     tooltip: 'Prev Page',
                     onPressed: () {
                       prevPage();
                     }),
+                IconButton(
+                    icon: const Icon(Icons.last_page),
+                    iconSize: 10,
+                    color: Colors.black,
+                    tooltip: 'Derniere Page',
+                    onPressed: () {
+                      lastPage();
+                    }),
                 ElevatedButton(
                     onPressed: () => {nextPage()},
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 2, vertical: 2),
+
                         textStyle: const TextStyle(
                             fontSize: 14,
                             color: Colors.black,
                             backgroundColor: Colors.blue,
                             fontWeight: FontWeight.bold)),
-                    child:  Text("Page "+ cettePage.toString()  )),
+                    child:  Text("P "+ cettePage.toString()  )),
                 ElevatedButton(
                     onPressed: () => { nextCase()},
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 2, vertical: 2),
+
                         textStyle: const TextStyle(
                             fontSize: 14,
                             color: Colors.black,
                             backgroundColor: Colors.blue,
                             fontWeight: FontWeight.bold)),
-                    child:  Text("Case "+ cetteCase.toString()  )),
+                    child:  Text("C  "+ cetteCase.toString()  )),
 
 
                 IconButton(
                     icon: const Icon(Icons.arrow_back),
-                    iconSize: 20,
+                    iconSize: 10,
                     color: Colors.blue,
                     tooltip: 'Case Précédente',
                     onPressed: () {
@@ -99,29 +107,21 @@ class _AdminTintinState extends State<AdminTintin> {
                     }),
 
 
-                ElevatedButton(
+
+                  ElevatedButton(
                     onPressed: () => {nextAlbum()},
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 2, vertical: 2),
+
                         textStyle: const TextStyle(
-                            fontSize: 14,
+                            fontSize: 12,
                             color: Colors.black,
                             backgroundColor: Colors.blue,
                             fontWeight: FontWeight.bold)),
                     child: Text(listAlbumTintin[cetAlbum-1].albumname)),
-                IconButton(
-                    icon: const Icon(Icons.last_page),
-                    iconSize: 20,
-                    color: Colors.black,
-                    tooltip: 'Derniere Page',
-                    onPressed: () {
-                     lastPage();
-                    }),
-
               ],
             ),
+
           ),
         ),
       ]),
