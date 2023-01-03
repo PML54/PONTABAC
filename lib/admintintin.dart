@@ -83,7 +83,7 @@ class _AdminTintinState extends State<AdminTintin> {
                             color: Colors.black,
                             backgroundColor: Colors.blue,
                             fontWeight: FontWeight.bold)),
-                    child:  Text("Page N° "+ cettePage.toString()  )),
+                    child:  Text("Page "+ cettePage.toString()  )),
                 ElevatedButton(
                     onPressed: () => { nextCase()},
                     style: ElevatedButton.styleFrom(
@@ -94,7 +94,7 @@ class _AdminTintinState extends State<AdminTintin> {
                             color: Colors.black,
                             backgroundColor: Colors.blue,
                             fontWeight: FontWeight.bold)),
-                    child:  Text("Case N°  "+ cetteCase.toString()  )),
+                    child:  Text("Case "+ cetteCase.toString()  )),
 
 
                 IconButton(

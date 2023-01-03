@@ -69663,10 +69663,10 @@ ai(){var s=t.vf
 return new A.Le(A.a([],s),A.a([],s),A.a([],t.jL),A.a([],t.Th),B.k)}}
 A.Le.prototype={
 P(a){var s,r,q=this,p=null,o=A.ec(B.I,B.cU,12,new A.a9X(a),"Quitter"),n=A.ec(B.I,B.h8,12,new A.a9Y(q),"Prev Page"),m=A.ec(B.l,B.CW,10,new A.a9Z(q),"Derniere Page"),l=A.et(p,p,B.T,p,p,p,p,p,p,p,p,p,p,p,p,p,p,B.wt,p)
-l=A.cl(A.bo("Page N\xb0 "+B.e.i(q.db),p,p,p,p,p,p),new A.aa_(q),l)
+l=A.cl(A.bo("Page "+B.e.i(q.db),p,p,p,p,p,p),new A.aa_(q),l)
 s=A.et(p,p,B.T,p,p,p,p,p,p,p,p,p,p,p,p,p,p,B.wt,p)
 r=t.p
-s=A.mT(A.a([A.bs(A.cJ(A.dp(A.a([o,n,m,l,A.cl(A.bo("Case N\xb0  "+B.e.i(q.dx),p,p,p,p,p,p),new A.aa0(q),s),A.ec(B.T,B.h8,10,new A.aa1(q),"Case Pr\xe9c\xe9dente")],r),B.v,B.u)),!0)],r),p)
+s=A.mT(A.a([A.bs(A.cJ(A.dp(A.a([o,n,m,l,A.cl(A.bo("Case "+B.e.i(q.dx),p,p,p,p,p,p),new A.aa0(q),s),A.ec(B.T,B.h8,10,new A.aa1(q),"Case Pr\xe9c\xe9dente")],r),B.v,B.u)),!0)],r),p)
 l=A.et(p,p,B.T,p,p,p,p,p,p,p,p,p,p,p,p,p,p,B.Mh,p)
 return A.GT(A.m0(s,A.amD(!0,A.h0(A.a([A.cl(A.bo(q.ax[q.cy-1].b,p,p,p,p,p,p),new A.aa2(q),l),q.OZ()],r),B.v,B.as,B.u),B.ai,!0),p,p))},
 KY(){var s,r,q
@@ -69860,7 +69860,7 @@ A.NN.prototype={
 P(a){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e=null
 this.G(new A.adI())
 A.a8g(B.l0)
-s=A.mT(e,A.bo("Bac 2.15 Candidat "+$.xY,e,e,e,A.iN(e,15),e,e))
+s=A.mT(e,A.bo("Bac 2.16 Candidat "+$.xY,e,e,e,A.iN(e,15),e,e))
 r=t.w
 q=a.Y(r).f
 r=a.Y(r).f
