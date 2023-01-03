@@ -83,7 +83,7 @@ class _AdminTintinState extends State<AdminTintin> {
                             color: Colors.black,
                             backgroundColor: Colors.blue,
                             fontWeight: FontWeight.bold)),
-                    child:  Text("P "+ cettePage.toString()  )),
+                    child:  Text("Page N° "+ cettePage.toString()  )),
                 ElevatedButton(
                     onPressed: () => { nextCase()},
                     style: ElevatedButton.styleFrom(
@@ -94,7 +94,7 @@ class _AdminTintinState extends State<AdminTintin> {
                             color: Colors.black,
                             backgroundColor: Colors.blue,
                             fontWeight: FontWeight.bold)),
-                    child:  Text("C  "+ cetteCase.toString()  )),
+                    child:  Text("Case N°  "+ cetteCase.toString()  )),
 
 
                 IconButton(
@@ -108,17 +108,7 @@ class _AdminTintinState extends State<AdminTintin> {
 
 
 
-                  ElevatedButton(
-                    onPressed: () => {nextAlbum()},
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
 
-                        textStyle: const TextStyle(
-                            fontSize: 12,
-                            color: Colors.black,
-                            backgroundColor: Colors.blue,
-                            fontWeight: FontWeight.bold)),
-                    child: Text(listAlbumTintin[cetAlbum-1].albumname)),
               ],
             ),
 
@@ -127,6 +117,17 @@ class _AdminTintinState extends State<AdminTintin> {
       ]),
       body: SafeArea(
         child: Column(children: <Widget>[
+          ElevatedButton(
+              onPressed: () => {nextAlbum()},
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+
+                  textStyle: const TextStyle(
+                      fontSize: 12,
+                      color: Colors.black,
+                      backgroundColor: Colors.blue,
+                      fontWeight: FontWeight.bold)),
+              child: Text(listAlbumTintin[cetAlbum-1].albumname)),
           getget(),
         ]),
       ),

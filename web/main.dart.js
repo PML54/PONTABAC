@@ -69662,14 +69662,13 @@ A.mN.prototype={
 ai(){var s=t.vf
 return new A.Le(A.a([],s),A.a([],s),A.a([],t.jL),A.a([],t.Th),B.k)}}
 A.Le.prototype={
-P(a){var s,r,q,p,o=this,n=null,m=A.ec(B.I,B.cU,12,new A.a9X(a),"Quitter"),l=A.ec(B.I,B.h8,12,new A.a9Y(o),"Prev Page"),k=A.ec(B.l,B.CW,10,new A.a9Z(o),"Derniere Page"),j=A.et(n,n,B.T,n,n,n,n,n,n,n,n,n,n,n,n,n,n,B.wt,n)
-j=A.cl(A.bo("P "+B.e.i(o.db),n,n,n,n,n,n),new A.aa_(o),j)
-s=A.et(n,n,B.T,n,n,n,n,n,n,n,n,n,n,n,n,n,n,B.wt,n)
-s=A.cl(A.bo("C  "+B.e.i(o.dx),n,n,n,n,n,n),new A.aa0(o),s)
-r=A.ec(B.T,B.h8,10,new A.aa1(o),"Case Pr\xe9c\xe9dente")
-q=A.et(n,n,B.T,n,n,n,n,n,n,n,n,n,n,n,n,n,n,B.Mh,n)
-p=t.p
-return A.GT(A.m0(A.mT(A.a([A.bs(A.cJ(A.dp(A.a([m,l,k,j,s,r,A.cl(A.bo(o.ax[o.cy-1].b,n,n,n,n,n,n),new A.aa2(o),q)],p),B.v,B.u)),!0)],p),n),A.amD(!0,A.h0(A.a([o.OZ()],p),B.v,B.as,B.u),B.ai,!0),n,n))},
+P(a){var s,r,q=this,p=null,o=A.ec(B.I,B.cU,12,new A.a9X(a),"Quitter"),n=A.ec(B.I,B.h8,12,new A.a9Y(q),"Prev Page"),m=A.ec(B.l,B.CW,10,new A.a9Z(q),"Derniere Page"),l=A.et(p,p,B.T,p,p,p,p,p,p,p,p,p,p,p,p,p,p,B.wt,p)
+l=A.cl(A.bo("Page N\xb0 "+B.e.i(q.db),p,p,p,p,p,p),new A.aa_(q),l)
+s=A.et(p,p,B.T,p,p,p,p,p,p,p,p,p,p,p,p,p,p,B.wt,p)
+r=t.p
+s=A.mT(A.a([A.bs(A.cJ(A.dp(A.a([o,n,m,l,A.cl(A.bo("Case N\xb0  "+B.e.i(q.dx),p,p,p,p,p,p),new A.aa0(q),s),A.ec(B.T,B.h8,10,new A.aa1(q),"Case Pr\xe9c\xe9dente")],r),B.v,B.u)),!0)],r),p)
+l=A.et(p,p,B.T,p,p,p,p,p,p,p,p,p,p,p,p,p,p,B.Mh,p)
+return A.GT(A.m0(s,A.amD(!0,A.h0(A.a([A.cl(A.bo(q.ax[q.cy-1].b,p,p,p,p,p,p),new A.aa2(q),l),q.OZ()],r),B.v,B.as,B.u),B.ai,!0),p,p))},
 KY(){var s,r,q
 for(s=this.ax,r=s.length,q=0;q<r;++q)s[q].r=1},
 BH(a){var s,r,q,p,o,n=this,m={}
