@@ -75,26 +75,30 @@ class _AdminTintinState extends State<AdminTintin> {
                             backgroundColor: Colors.blue,
                             fontWeight: FontWeight.bold)),
                     child:  Text("Page "+ cettePage.toString()  )),
+                ElevatedButton(
+                    onPressed: () => { nextCase()},
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 2, vertical: 2),
+                        textStyle: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                            backgroundColor: Colors.blue,
+                            fontWeight: FontWeight.bold)),
+                    child:  Text("Case "+ cetteCase.toString()  )),
 
 
                 IconButton(
                     icon: const Icon(Icons.arrow_back),
                     iconSize: 20,
-                    color: Colors.black,
+                    color: Colors.blue,
                     tooltip: 'Case Précédente',
                     onPressed: () {
                       prevCase();
                     }),
 
 
-                IconButton(
-                    icon: const Icon(Icons.arrow_forward),
-                    iconSize: 20,
-                    color: Colors.black,
-                    tooltip: 'Case Suivante',
-                    onPressed: () {
-                      nextCase();
-                    }),
                 ElevatedButton(
                     onPressed: () => {nextAlbum()},
                     style: ElevatedButton.styleFrom(

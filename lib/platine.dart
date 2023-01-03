@@ -142,7 +142,8 @@ class _PlatineState extends State<Platine> {
                   ),
                   Visibility(
                       visible: quizzOver,
-                      child: IconButton(
+                      child:
+                      IconButton(
                           icon: const Icon(Icons.tv),
                           iconSize: 30,
                           color: Colors.greenAccent,
@@ -152,7 +153,8 @@ class _PlatineState extends State<Platine> {
                               boolScore = !boolScore;
                               booldisplayHelp = !boolScore;
                             });
-                          })),
+                          })
+                  ),
                   Visibility(
                       visible: quizzOver,
                       child: IconButton(

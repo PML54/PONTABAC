@@ -41,7 +41,7 @@ class _MenoPaulState extends State<MenoPaul> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Bac 2.14 Candidat ' + QuizzCommons.myPseudo,
+          'Bac 2.15 Candidat ' + QuizzCommons.myPseudo,
           style: GoogleFonts.averageSans(fontSize: 15.0),
         ),
       ),
@@ -107,12 +107,12 @@ class _MenoPaulState extends State<MenoPaul> {
 
                   // --> Reviser       Tinrtin
                   Visibility(
-                    visible: QuizzCommons.myProfile == CERTIFIED_PML,
+                    visible: QuizzCommons.myProfile == CERTIFIED_PML || QuizzCommons.myProfile & 8==8, // Pour Patrick
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
                         child: Text(
-                          'Réviser TINTIN',
+                          'Lire Les  TINTIN',
                           style: GoogleFonts.averageSans(fontSize: 15.0),
                         ),
                         onPressed: () {
