@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+
+import 'package:dart_ipify/dart_ipify.dart';
+
+import 'package:intl/intl.dart';
+
+
+
 import 'package:pontabac/admintintin.dart';
 import 'package:pontabac/configquizz.dart';
 import 'package:pontabac/quizzbd.dart';
@@ -29,6 +37,10 @@ class _MenoPaulState extends State<MenoPaul> {
   bool isAdmin = false;
   bool isGamer = false;
   String connectedGuy = "";
+  late String ipv4name;
+  String datecreate = "";
+  final now = DateTime.now();
+
   List<MemopolUsers> listMemopolUsers = [];
 
   @override
@@ -41,7 +53,7 @@ class _MenoPaulState extends State<MenoPaul> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Bac 2.16 Candidat ' + QuizzCommons.myPseudo,
+          'Bac 2.17 Candidat ' + QuizzCommons.myPseudo,
           style: GoogleFonts.averageSans(fontSize: 15.0),
         ),
       ),
@@ -310,6 +322,28 @@ class _MenoPaulState extends State<MenoPaul> {
     setState(() {
       isAdmin = false;
       isGamer = false;
+      datecreate = DateFormat('d/M/y').format(now); // 28/03/2020
+      ipv4name = "xx.xx.xx.xx";
+      getIP();
+
     });
+  }
+  Future whoPlay() async {
+    Uri url = Uri.parse(pathPHP + "createMEMOPOLIP.php");
+    var data = {
+
+
+      "UIPTODAY": ipv4name,
+      "ULDATE": datecreate,
+
+    };
+
+    bool syntaxOK = true;
+    http.Response response = await http.post(url, body: data);
+  }
+  Future getIP() async {
+    final ipv4 = await Ipify.ipv4();
+    ipv4name = ipv4;
+    whoPlay();
   }
 }
